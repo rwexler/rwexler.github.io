@@ -22,4 +22,4 @@ FFT_LIB =       -lfftw3
 
 That's all she wrote! Of course, I executed make in parallel as `make -j 48 <Makefile suffix>`. Next, I'm going to test this recipe on other DoD computers.
 
-P.S. It is necessary to load the modules `fftw3/intel/3.3.5` and `compiler/intelmpi/18.0.1.163` prior to running LAMMPS. I added two lines in my `.bashrc` to take care of this.
+P.S. It is necessary to load the modules `costinit`, `fftw3/intel/3.3.5`, and `compiler/intelmpi/18.0.1.163` prior to running LAMMPS. I added two lines in my `.bashrc` to take care of this. This can also be done in your PBS script.

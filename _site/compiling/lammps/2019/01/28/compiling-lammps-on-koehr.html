@@ -61,7 +61,7 @@ FFT_LIB =       -lfftw3
 
 <p>That’s all she wrote! Of course, I executed make in parallel as <code class="highlighter-rouge">make -j 48 &lt;Makefile suffix&gt;</code>. Next, I’m going to test this recipe on other DoD computers.</p>
 
-<p>P.S. It is necessary to load the modules <code class="highlighter-rouge">fftw3/intel/3.3.5</code> and <code class="highlighter-rouge">compiler/intelmpi/18.0.1.163</code> prior to running LAMMPS. I added two lines in my <code class="highlighter-rouge">.bashrc</code> to take care of this.</p>
+<p>P.S. It is necessary to load the modules <code class="highlighter-rouge">costinit</code>, <code class="highlighter-rouge">fftw3/intel/3.3.5</code>, and <code class="highlighter-rouge">compiler/intelmpi/18.0.1.163</code> prior to running LAMMPS. I added two lines in my <code class="highlighter-rouge">.bashrc</code> to take care of this. This can also be done in your PBS script.</p>
 
   </div><a class="u-url" href="/compiling/lammps/2019/01/28/compiling-lammps-on-koehr.html" hidden></a>
 </article>

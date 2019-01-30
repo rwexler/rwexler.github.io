@@ -20,3 +20,4 @@ These are some books that I highly recommend.
 Codes I've written to automate some processes  
   
 [VASP to xsf structure file converter](https://github.com/rwexler/tools/blob/master/structure/vasp2xsf.py) - just type `python vasp2xsf.py <filename>.POSCAR.vasp`
+[cfg to xsf structure file converter](https://github.com/rwexler/tools/blob/master/structure/cfg2xsf.py) - just type `python cfg2xsf.py <filename>.cfg`

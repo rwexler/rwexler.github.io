@@ -13,6 +13,10 @@ This page contains a number of links to resources that I find useful.
 [matgenie](http://matgenie.materialsvirtuallab.org/) - generate slab model given Miller index and vacuum/slab size  
   
 These are some books that I highly recommend.
-
+  
 [Materials Modelling using Density Functional Theory](https://www.amazon.com/Materials-Modelling-Density-Functional-Theory/dp/0199662444) - great introduction to practical DFT calculations  
-[Fundamental Concepts in Heterogeneous Catalysis](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118892114) - a compact but comprehensive introduction to theoretical and computational catalysis
+[Fundamental Concepts in Heterogeneous Catalysis](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118892114) - a compact but comprehensive introduction to theoretical and computational catalysis  
+  
+Codes I've written to automate some processes  
+  
+[VASP to xsf structure file converter](https://github.com/rwexler/tools/blob/master/structure/vasp2xsf.py) - just type `python vasp2xsf.py <filename>.POSCAR.vasp`

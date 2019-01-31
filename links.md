@@ -25,3 +25,4 @@ Codes I've written to automate some processes. Please let me know if you encount
 * [Restart QE vc-relax](https://github.com/rwexler/tools/blob/master/qe/re-vc-relax.py) - first change `<filename>.in` to `<filename>.in.old`, then run `python re-vc-relax.py <filename>.out` (note: PBS script should be called `runscript`)
 * [k-convergence in QE](https://github.com/rwexler/tools/blob/master/qe/k-pt-conv.py) - modify `values` and then type `python k-pt-conv.py <filename>.in`
 * [plane wave convergence in QE](https://github.com/rwexler/tools/blob/master/qe/pw-conv.py) - modify `values` and then type `python pw-conv.py <filename>.in`
+* [csv of Lowdin charges](https://github.com/rwexler/tools/blob/master/qe/lowdin-csv.py) - wrangles Lowdin charges in a csv file, just type `python lowdin-csv.py <filename>.out` with `projwfc.x` output

@@ -11,6 +11,7 @@ This page contains a number of links to resources that I find useful.
 * [Colby Energy Converter](http://www.colby.edu/chemistry/PChem/Hartree.html) - useful conversions between different energy units  
 * [Halas Energy Converter](http://halas.rice.edu/conversions) - this one gives you energy to natural frequencies too  
 * [matgenie](http://matgenie.materialsvirtuallab.org/) - generate slab model given Miller index and vacuum/slab size  
+* [Molecular structures](http://www.cse.anl.gov/OldCHMwebsiteContent/compmat/g2-97_cart_neut.txt) - cartesian coordinates for a bunch of molecules
   
 These are some books that I highly recommend.
   

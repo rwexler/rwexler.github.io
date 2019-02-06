@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Running Quantum Espresso on Conrad"
+title:  "Running Quantum Espresso on Conrad and Gordon"
 date:   2019-01-29
 categories: qe
 ---
-Today, I figured out that there is a working `pw.x` executable for Quantum Espresso on the DoD machine Conrad. It is located in `/app/espresso/6.3-intel/bin`. All you need is a PBS script with an execution line like
+Today, I figured out that there is a working `pw.x` executable for Quantum Espresso on the DoD machines Conrad and Gordon. It is located in `/app/espresso/6.3-intel/bin`. All you need is a PBS script with an execution line like
 
 ```
 aprun -n 32 /app/espresso/6.3-intel/bin/pw.x < qe.in > qe.out

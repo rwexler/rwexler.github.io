@@ -26,3 +26,4 @@ Codes I've written to automate some processes. Please let me know if you encount
 * [k-convergence in QE](https://github.com/rwexler/tools/blob/master/qe/k-pt-conv.py) - modify `values` and then type `python k-pt-conv.py <filename>.in`
 * [plane wave convergence in QE](https://github.com/rwexler/tools/blob/master/qe/pw-conv.py) - modify `values` and then type `python pw-conv.py <filename>.in`
 * [csv of Lowdin charges](https://github.com/rwexler/tools/blob/master/qe/lowdin-csv.py) - wrangles Lowdin charges in a csv file, just type `python lowdin-csv.py <filename>.out` with `projwfc.x` output
+* [Phonon free energy](https://github.com/rwexler/tools/blob/master/phonons/harmonic.py) - calculates the phonon free energy for a range of temperatures using QE `ph.x` output, just type `python harmonic.py dynmat.out`

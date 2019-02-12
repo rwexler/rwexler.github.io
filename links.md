@@ -29,3 +29,15 @@ Codes I've written to automate some processes. Please let me know if you encount
 * [Phonon free energy](https://github.com/rwexler/tools/blob/master/phonons/harmonic.py) - calculates the phonon free energy for a range of temperatures using QE `ph.x` output, just type `python harmonic.py dynmat.out`
 * [QE to xsf converter](https://github.com/rwexler/tools/blob/master/qe/qe2xsf.py) - just type `python qe2xsf.py <filename prefix>` where the prefix is everything that comes before the `.`
 * [Restart QE relax](https://github.com/rwexler/tools/blob/master/qe/re-relax.py) - run `python re-relax.py <filename prefix>` (currently doesn't support fixed atoms)
+
+Here are some tools I use on a regular basis.
+
+* [VESTA](http://jp-minerals.org/vesta/en/) - static crystal structure visualization
+* [VMD](https://www.ks.uiuc.edu/Research/vmd/) - efficient visualization of molecular dynamics simulations
+* [FileZilla](https://filezilla-project.org/) - GUI for file transfers
+* [Inkscape](https://inkscape.org/) - free vector graphics software
+* [RStudio](https://www.rstudio.com/) - environment for R programming
+* [Avogadro](https://avogadro.cc/) - static molecular structure visualization
+* [Octave](https://www.gnu.org/software/octave/) - free alternative to MATLAB
+* [Mercury](https://www.ccdc.cam.ac.uk/Community/csd-community/freemercury/) - molecule/crystal visualization software that can also count bonds/angles/dihedrals and calculate the BFDH morphology
+* [Anaconda](https://www.anaconda.com/distribution/) - powerful software manager for Python

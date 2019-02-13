@@ -12,6 +12,7 @@ This page contains a number of links to resources that I find useful.
 * [Halas Energy Converter](http://halas.rice.edu/conversions) - this one gives you energy to natural frequencies too  
 * [matgenie](http://matgenie.materialsvirtuallab.org/) - generate slab model given Miller index and vacuum/slab size  
 * [Molecular structures](http://www.cse.anl.gov/OldCHMwebsiteContent/compmat/g2-97_cart_neut.txt) - cartesian coordinates for a bunch of molecules
+* [Phonon calculations in QE](https://www.quantum-espresso.org/resources/tutorials/shanghai-2013/hands-on-phonons/phonons_tutorial_shanghai1.pdf) - a practical introduction
   
 These are some books that I highly recommend.
   

@@ -14,3 +14,4 @@ This means two things. First, that the integral under the tail of the pseudo-wav
 $$a x^{2} + b x + c = 0$$
 
 (Under construction...)
+(I will get back to this soon, I promise!)

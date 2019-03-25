@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-24T19:33:45-04:00</updated><id>/feed.xml</id><title type="html">Robert B. Wexler</title><subtitle>Tips and tricks for electronic structure calculations from a  soon-to-be PhD in chemistry.</subtitle><entry><title type="html">gzip in parallel using pigz</title><link href="/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html" rel="alternate" type="text/html" title="gzip in parallel using pigz" /><published>2019-03-24T00:00:00-04:00</published><updated>2019-03-24T00:00:00-04:00</updated><id>/gzip/parallel/pigz/2019/03/24/gzip-in-parallel</id><content type="html" xml:base="/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html">&lt;p&gt;If you are running MD simulations, then this is the post for you. It can sometimes be a nightmare to compress MD trajectories because they can be so large, like multiple GBs (or maybe even TBs if you’re working with gigantic systems). Up until now, I have found myself deleting MD trajectors but saving a restart file so that I can regenerate the data if I need to do further processing. This can be somewhat of a drag so I went searching for a way to compress MD trajectories in parallel. That’s when I came across &lt;a href=&quot;https://zlib.net/pigz/&quot;&gt;pigz&lt;/a&gt;. If you already know how to make a &lt;code class=&quot;highlighter-rouge&quot;&gt;tar.gz&lt;/code&gt; file, then it is really easy to use pigz. For example, the pigz command corresponding to&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-25T11:23:47-04:00</updated><id>/feed.xml</id><title type="html">Robert B. Wexler</title><subtitle>Tips and tricks for electronic structure calculations from a  soon-to-be PhD in chemistry.</subtitle><entry><title type="html">Generate thermal profiles for LAMMPS simulations</title><link href="/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html" rel="alternate" type="text/html" title="Generate thermal profiles for LAMMPS simulations" /><published>2019-03-25T00:00:00-04:00</published><updated>2019-03-25T00:00:00-04:00</updated><id>/thermal/profile/lammps/2019/03/25/thermal-profile-lammps</id><content type="html" xml:base="/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html">&lt;p&gt;This notebook generates thermal profiles for LAMMPS simulations. All you need to do is define the temperatures then the notebook will generate an NVT equilibration phase (10K steps), NPT equilibration phase (40K steps, P = 1.01325 bar), and NPT sampling step (40K steps, P = 1.01325 bar) for each temperature. Should be easy to make modifications. Please feel free to do so. If you’d like me to include your updates, then please shoot me an email with your notebook or Python script.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# loads numpy
+&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# define temperatures
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;temps&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;array([10, 20])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# generate thermal profile
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temps&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# nvt equilibration
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fix {} all nvt temp {} {} 1.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;run 10000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;unfix {}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# npt equilibration
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fix {} all npt temp {} {} 1.0 aniso 1.01325 1.01325 5.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;run 40000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;unfix {}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# npt sampling
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fix {} all npt temp {} {} 1.0 aniso 1.01325 1.01325 5.0&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dump {} all custom 200 dump{:03d}.xyz x y z&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dump_modify {} sort id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;run 40000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;write_restart BST.restart{:03d}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;undump {}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;unfix {}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fix 1 all nvt temp 10 10 1.0
+run 10000
+unfix 1
+
+fix 2 all npt temp 10 10 1.0 aniso 1.01325 1.01325 5.0
+run 40000
+unfix 2
+
+fix 3 all npt temp 10 10 1.0 aniso 1.01325 1.01325 5.0
+dump 3 all custom 200 dump010.xyz x y z
+dump_modify 3 sort id
+run 40000
+write_restart BST.restart010
+undump 3
+unfix 3
+
+fix 4 all nvt temp 20 20 1.0
+run 10000
+unfix 4
+
+fix 5 all npt temp 20 20 1.0 aniso 1.01325 1.01325 5.0
+run 40000
+unfix 5
+
+fix 6 all npt temp 20 20 1.0 aniso 1.01325 1.01325 5.0
+dump 6 all custom 200 dump020.xyz x y z
+dump_modify 6 sort id
+run 40000
+write_restart BST.restart020
+undump 6
+unfix 6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">This notebook generates thermal profiles for LAMMPS simulations. All you need to do is define the temperatures then the notebook will generate an NVT equilibration phase (10K steps), NPT equilibration phase (40K steps, P = 1.01325 bar), and NPT sampling step (40K steps, P = 1.01325 bar) for each temperature. Should be easy to make modifications. Please feel free to do so. If you’d like me to include your updates, then please shoot me an email with your notebook or Python script.</summary></entry><entry><title type="html">gzip in parallel using pigz</title><link href="/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html" rel="alternate" type="text/html" title="gzip in parallel using pigz" /><published>2019-03-24T00:00:00-04:00</published><updated>2019-03-24T00:00:00-04:00</updated><id>/gzip/parallel/pigz/2019/03/24/gzip-in-parallel</id><content type="html" xml:base="/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html">&lt;p&gt;If you are running MD simulations, then this is the post for you. It can sometimes be a nightmare to compress MD trajectories because they can be so large, like multiple GBs (or maybe even TBs if you’re working with gigantic systems). Up until now, I have found myself deleting MD trajectors but saving a restart file so that I can regenerate the data if I need to do further processing. This can be somewhat of a drag so I went searching for a way to compress MD trajectories in parallel. That’s when I came across &lt;a href=&quot;https://zlib.net/pigz/&quot;&gt;pigz&lt;/a&gt;. If you already know how to make a &lt;code class=&quot;highlighter-rouge&quot;&gt;tar.gz&lt;/code&gt; file, then it is really easy to use pigz. For example, the pigz command corresponding to&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tar zcvf &amp;lt;filename&amp;gt;.tar.gz &amp;lt;filename/directory_name/etc&amp;gt;&lt;/code&gt;&lt;/p&gt;
 

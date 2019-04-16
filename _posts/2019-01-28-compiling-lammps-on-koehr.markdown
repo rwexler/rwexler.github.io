@@ -4,7 +4,7 @@ title:  "Compiling LAMMPS on Koehr"
 date:   2019-01-28 
 categories: compiling lammps
 ---
-Today, I was able to successfully compile LAMMPS on DoD machine Koehr. First, I used `mpicc` as my C++ compiler. Then, I manually pointed the makefile to Intel's MPI libraries using the following three lines of code:
+Today, I was able to successfully compile LAMMPS on the DoD machine Koehr. First, I used `mpicc` as my C++ compiler. Then, I manually pointed the makefile to Intel's MPI libraries using the following three lines of code:
 
 ```
 MPI_INC =       -I/app/intel/parallel_studio_xe_2018_update1/impi/2018.1.163/intel64/include

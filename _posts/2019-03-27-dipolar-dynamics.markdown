@@ -20,7 +20,7 @@ from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
 ```
 
-`numpy` offers efficient array operations, `pandas` provides efficient dataframe operations, `matplotlib` is used to make sophicated plots (e.g. `animation`s), `os` gives command line control, `glob` is used to find files with particular names, and `scipy` has built-in functions for interpolation, which we will need to plot contours.
+`numpy` offers efficient array operations, `pandas` provides efficient dataframe operations, `matplotlib` is used to make sophicated plots (e.g. `animation`s), `os` gives command line control, `glob` is used to find files with particular names, and `scipy` has built-in functions for interpolation, which we'll need to plot contours.
 
 
 ```python
@@ -54,7 +54,7 @@ subset_df.z = subset_df.z.astype(float)
 aplane = subset_df[subset_df.x < 2.5] # extracts a 10x10 slice of the structures for x < 2.5 A from the origin
 ```
 
-`filename` is the name of a file containing the positions (x, y, z) and components (u, v, w) of the displacement (i.e. local dipole). You can download example file [here](https://drive.google.com/open?id=1M_pjh6hqPYO_8LoU4GNYq0U1b7-vu-E4). The columns of this file correspond to `x y z u v w`. The rows correspond to a particular Ti's displacement. There are `nstrs` structures and `ntis` Ti's per structure; therefore, there are `nstrs * ntis` lines in the file.
+`filename` is the name of a file containing the positions (x, y, z) and components (u, v, w) of the displacement (i.e. local dipole). You can download an example file [here](https://drive.google.com/open?id=1M_pjh6hqPYO_8LoU4GNYq0U1b7-vu-E4). The columns of this file correspond to `x y z u v w`. The rows correspond to a particular Ti's displacement. There are `nstrs` structures and `ntis` Ti's per structure; therefore, there are `nstrs * ntis` lines in the file.
 
 `datafilename` is the name of a file containing the positions of the atoms. The structure is a 10x10x10 supercell of BST containing 10% Sr, and 5000 atoms total (hence `ntis = 1000`). You can download an example data file [here](https://drive.google.com/open?id=16Yvj1L44CYCghyJiRHnT5o7lWt4TJxA3).
 

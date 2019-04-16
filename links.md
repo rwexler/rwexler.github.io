@@ -13,6 +13,8 @@ This page contains a number of links to resources that I find useful.
 * [matgenie](http://matgenie.materialsvirtuallab.org/) - generate slab model given Miller index and vacuum/slab size  
 * [Molecular structures](http://www.cse.anl.gov/OldCHMwebsiteContent/compmat/g2-97_cart_neut.txt) - cartesian coordinates for a bunch of molecules
 * [Phonon calculations in QE](https://www.quantum-espresso.org/resources/tutorials/shanghai-2013/hands-on-phonons/phonons_tutorial_shanghai1.pdf) - a practical introduction
+* [XC functionals in QE](https://github.com/maxhutch/quantum-espresso/blob/master/Modules/funct.f90) - DFT functionals in QE
+* [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) - a great reference for Markdown formatting
   
 These are some books that I highly recommend.
   
@@ -42,3 +44,4 @@ Here are some tools I use on a regular basis.
 * [Octave](https://www.gnu.org/software/octave/) - free alternative to MATLAB
 * [Mercury](https://www.ccdc.cam.ac.uk/Community/csd-community/freemercury/) - molecule/crystal visualization software that can also count bonds/angles/dihedrals and calculate the BFDH morphology
 * [Anaconda](https://www.anaconda.com/distribution/) - powerful software manager for Python
+* [USPEX](https://uspex-team.org/en) - evolutionary algorithm for crystal structure prediction

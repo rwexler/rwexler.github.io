@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Generate thermal profiles for LAMMPS simulations"
+title:  "Generating thermal profiles for LAMMPS simulations"
 date:   2019-03-25
 categories: thermal profile lammps
 ---

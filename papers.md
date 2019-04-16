@@ -6,7 +6,9 @@ permalink: /papers/
 
 My [Google Scholar](https://scholar.google.com/citations?user=BMnroAsAAAAJ&hl=en), [ResearchGate](https://www.researchgate.net/profile/Robert_Wexler), and [Mendeley](https://www.mendeley.com/profiles/robert-wexler/) profiles
 
-Graduate research
+# Graduate research
+
+---
 
 <img src="/images/aigcmc.jpeg" alt="Ab Initio GCMC" style="width:500px;">
 
@@ -27,6 +29,10 @@ Naylor, C. H.; Parkin, W. M.; Gao, Z.; Kang, H.; Noyan, M.; **Wexler, R. B.**; T
 <img src="/images/reconstr.jpeg" alt="Reconstructions" style="width:500px;">
 
 **Wexler, R. B.**; Martirez, J. M. P.; Rappe, A. M. Stable Phosphorus-Enriched (0001) Surfaces of Nickel Phosphides. *Chem. Mater.* **2016**, *28* (15), pp 5365-5372. DOI: [10.1021/acs.chemmater.6b01437](https://pubs.acs.org/doi/full/10.1021/acs.chemmater.6b01437)
+
+# Undergraduate research
+
+---
 
 **Wexler R. B.**; Sohlberg, K. Models for the Temperature and Gas Partial Pressure Dependence of Conductance. *Rev. Theor. Sci.* **2016**, *4* (2), pp 97-111. DOI: [10.1166/rits.2016.1051](https://www.ingentaconnect.com/content/asp/rits/2016/00000004/00000002/art00001)
 

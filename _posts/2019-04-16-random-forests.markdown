@@ -5,12 +5,13 @@ date:   2019-04-16
 categories: descriptor catalysis random forest
 ---
 
-In this tutorial, I'm going to show you how easy it is to train and analyze a random forest regression model. The data we're going to use is taken from [my recent paper on tuning the hydrogen evolving activity of Ni2P via strain](https://pubs.acs.org/doi/10.1021/jacs.8b00947). [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni3 sites, can induce compressive and tensile strain on the Ni3 sites leading to changes in their H binding strength.
+In this tutorial, I'm going to show you how easy it is to train and analyze a random forest regression model. The data we're going to use is taken from [my recent paper on tuning the hydrogen evolving activity of Ni<sub>2</sub>P via strain](https://pubs.acs.org/doi/10.1021/jacs.8b00947). [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni<sub>3</sub> sites, can induce compressive and tensile strain on the Ni<sub>3</sub> sites leading to changes in their H binding strength.
 
-In my study, I calculated the H binding energy at the Ni3 site for different nonmetal dopants (B, C, N, O, Si, S, As, Se, & Te) and doping concentrations. There were 55 configurations in total...so I was working with a rather small data set. I should mention that for smaller data sets it's generally advisable to use linear models, however, if care is taken, then random forests can be used as well. Regardless, always make sure to validate your proposed descriptors using an appropriate simulation technique such as density functional theory.
+In my study, I calculated the H binding energy at the Ni<sub>3</sub> site for different nonmetal dopants (B, C, N, O, Si, S, As, Se, & Te) and doping concentrations. There were 55 configurations in total...so I was working with a rather small data set. I should mention that for smaller data sets it's generally advisable to use linear models, however, if care is taken, then random forests can be used as well. Regardless, always make sure to validate your proposed descriptors using an appropriate simulation technique such as density functional theory.
 
-A quick word on random forests. Random forests are made up of decision trees. Each decision trees get a random subset of the rows and columns of the data and is built using the CART algorithm [2]. For more information, please see chapter 2.4 of my thesis :-)
-________________
+A quick word on random forests. Random forests are made up of decision trees. Each decision tree gets a random subset of the rows and columns of the data and is built using the CART algorithm. [2] For more information, please see chapter 2.4 of my thesis :smile:
+
+---
 
 [1] **Wexler, R. B.**; Martirez, J. M. P.; Rappe, A. M. Chemical Pressure-Driven Enhancement of the Hydrogen Evolving Activity of Ni<sub>2</sub>P from Nonmetal Surface Doping Interpreted via Machine Learning. *J. Am. Chem. Soc.* **2018**, *140* (13), pp 4678-4683. DOI: [10.1021/jacs.8b00947](https://pubs.acs.org/doi/full/10.1021/jacs.8b00947)
 
@@ -29,7 +30,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 ```
 
-`numpy` and `pandas` are used for convenient data storage, `matplotlib` is used to generate plots, and the scikit learn is used for all things machine learning. For example, we use `train_test_split` to do as its name suggests, `RandomForestRegressor` trains a random forest, and `r2_score`, `mean_squared_error`, `mean_absolute_error` are different evaluation metrics (you may like one of them more than the others, though MSE is probably the most robust).
+`numpy` and `pandas` are used for convenient data storage, `matplotlib` is used to generate plots, and the scikit learn is used for all things machine learning. For example, we use `train_test_split` to do as its name suggests, `RandomForestRegressor` trains a random forest, and `r2_score`, `mean_squared_error`, and `mean_absolute_error` are different evaluation metrics (you may like one of them more than the others, though MSE is probably the most robust).
 
 
 ```python
@@ -67,13 +68,13 @@ def plot_results(model, X_train, X_test, y_train, y_test, X_val = np.array([]), 
 
 def plot_importances(model, descriptors) :
     plt.bar(np.arange(model.feature_importances_.shape[0]), model.feature_importances_)
-    plt.xticks(np.arange(model.feature_importances_.shape[0]), descriptors, rotation=90)
+    plt.xticks(np.arange(model.feature_importances_.shape[0]), descriptors, rotation=90$$)
     plt.show()
 ```
 
-This chunk contains some functions that you may find useful. `drop_nzv` takes a dataframe and removes columns whose variance is small, i.e. they are nearly single valued and therefore cannot be used to describe variations in y. `get_results` takes a model and calculates the three performance metrics mentioned above. `plot_results` plots the actual y vs. the prediction for both the training and test set.
+This chunk contains some functions that you may find useful. `drop_nzv` takes a dataframe and removes columns whose variance is small, i.e. they are nearly single valued and therefore cannot be used to describe variations in $$y$$. `get_results` takes a model and calculates the three performance metrics mentioned above. `plot_results` plots the actual $$y$$ vs. the prediction for both the training and test set.
 
-At this point, we are ready to start writing some real code. You can download the data from my paper at [HERE](http://pubs.acs.org/doi/suppl/10.1021/jacs.8b00947/suppl_file/ja8b00947_si_002.zip).
+At this point, we're ready to start writing some real code. You can download the data from my paper at [HERE](http://pubs.acs.org/doi/suppl/10.1021/jacs.8b00947/suppl_file/ja8b00947_si_002.zip).
 
 
 ```python
@@ -258,7 +259,7 @@ df.head()
 
 
 
-As you can see, there are 55 rows and 31 columns. Information about each of the columns can be found in `processed_data.txt`, which comes along with the data. Suffice to say, there are some structure (bond length, angle, etc.) and charge (Lowdin charges) descriptors for each surface and it's corresponding H binding energy at the Ni3 site (dGH) calculated using DFT with the GGA of PBE for the electron exchange and correlation and using DFT-D2 vdW corrections. If this terminology seems foreign to you, I recommend reading chapter 2.1 of my thesis. The first column is useless and can be removed as follows:
+As you can see, there are 55 rows and 31 columns. Information about each of the columns can be found in `processed_data.txt`, which comes along with the data. Suffice to say, there are some structure (bond length, angle, etc.) and charge (Lowdin charges) descriptors for each surface and it's corresponding H binding energy at the Ni<sub>3</sub> site ($$\Delta G_{\rm H}$$) calculated using DFT with the GGA of PBE for the electron exchange and correlation and using DFT-D2 vdW corrections. If this terminology seems foreign to you, I recommend reading chapter 2.1 of my thesis. The first column is useless and can be removed as follows:
 
 
 ```python
@@ -620,7 +621,7 @@ df.head()
 
 
 
-As a final preprocessing step, we'll want to remove descriptors that are highly correlated. The reason we may want to do this is because linearly dependent descriptors are redundant, i.e. only one is necessary to explain their affect on y, and models with fewer descriptors are often preferred, especially in the physical sciences! As such, I'll remove descriptors that have correlation coefficients greater than 0.95. This chunk was adapted from [an awesome blog post by Chris Albon](https://chrisalbon.com/machine_learning/feature_selection/drop_highly_correlated_features/).
+As a final preprocessing step, we'll want to remove descriptors that are highly correlated. The reason we may want to do this is because linearly dependent descriptors are redundant, i.e. only one is necessary to explain their affect on $$y$$, and models with fewer descriptors are often preferred, especially in the physical sciences! As such, I'll remove descriptors that have correlation coefficients greater than 0.95. This chunk was adapted from [an awesome blog post by Chris Albon](https://chrisalbon.com/machine_learning/feature_selection/drop_highly_correlated_features/).
 
 
 ```python
@@ -789,9 +790,9 @@ df.head()
 
 
 
-After having cleaned up our data set, we are now left with only 17 descriptors and 1 column for y at the far right.
+After having cleaned up our data set, we're now left with only 17 descriptors and 1 column for $$y$$ at the far right.
 
-A critical step in the construction of machine learning models is splitting the data into a training and test set. The training set is used to build the model whereas the test set is kept aside, not analyzed, and used only for evaluating the "out of sample" error. The splitting should be done randomly, however, there are some more advanced schemes, e.g. those that split the data so that the distribution of y values in each subset is more or less the same. Here, we will just randomly split the data. Often a good starting point is to use 2/3 of the data for training and 1/3 for testing, however, this is not a hard and fast rule and probably leans towards "too conservative".
+A critical step in the construction of machine learning models is splitting the data into a training and test set. The training set is used to build the model whereas the test set is kept aside, not analyzed, and used only for evaluating the "out of sample" error. The splitting should be done randomly, however, there are some more advanced schemes, e.g. those that split the data so that the distribution of $$y$$ values in each subset is more or less the same. Here, we'll just randomly split the data. Often a good starting point is to use 2/3 of the data for training and 1/3 for testing, however, this is not a hard and fast rule and probably leans towards "too conservative".
 
 
 ```python
@@ -803,7 +804,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random
 
 # Tune random forest
 ## `n_estimators`
-Random forests have a few parameters that we will need to tune in order to minimize the test set error. The first is the number of trees in the random forests, a.k.a. `n_estimators`, which we will vary from 1 to 40.
+Random forests have a few parameters that we'll need to tune in order to minimize the test set error. The first is the number of trees in the random forests, a.k.a. `n_estimators`, which we'll vary from 1 to 40.
 
 
 ```python
@@ -827,7 +828,7 @@ plt.grid(True)
 <img src="/images/rfImages/output_15_0.png" style="width:500px;">
 
 
-The blue and red lines are the training and test set error, respectively. Tuning `n_estimators` ultimately boils down to choosing the value that minimizes test set error, or in the case of the plot above, maximizes R2. Therefore, our tuning indicates that **a small random forest with 4 trees is best**.
+The blue and red lines are the training and test set error, respectively. Tuning `n_estimators` ultimately boils down to choosing the value that minimizes test set error, or in the case of the plot above, maximizes $$R^{2}$$. Therefore, our tuning indicates that **a small random forest with 4 trees is best**.
 
 ## `max_features`
 
@@ -883,9 +884,9 @@ plt.grid(True)
 <img src="/images/rfImages/output_19_0.png" style="width:500px;">
 
 
-It's clear that deeper trees are better, however, after 7 layers, depth does not improve the model and can only lead to overfitting. As such, we'll stick with a model with **4 trees, 16 descriptors, and a maximum depth of 7 layers**.
+It's clear that deeper trees are better, however, after 7 layers, depth does'nt improve the model and can only lead to overfitting. As such, we'll stick with a model with **4 trees, 16 descriptors, and a maximum depth of 7 layers**.
 
-Now we are ready to train our random forest regressor!
+Now we're ready to train our random forest regressor!
 
 
 ```python
@@ -926,11 +927,11 @@ plot_importances(regr, df.columns[:-1])
 <img src="/images/rfImages/output_21_2.png" style="width:500px;">
 
 
-All righty, then! Let's take this piece by piece. First, your R2 is 0.85, which is pretty darn good considering we only fed the model simple structure and charge descriptors. The RMSE and MAE are between 0.05 and 0.1 eV, which is excellent considering the intrinsic DFT accuracy for binding energies is around 0.1 eV. The first plot shows how well our random forest model did compared to DFT. The black line shows perfect performance. The blue and red dots correspond to the training and test data, respectively. Upon visual inspection in conjuction with the metrics above, we have achieved a good fit.
+All righty, then! Let's take this piece by piece. First, your $$R^{2}$$ is 0.85, which is pretty darn good considering we only fed the model simple structure and charge descriptors. The RMSE and MAE are between 0.05 and 0.1 eV, which is excellent considering the intrinsic DFT accuracy for binding energies is around 0.1 eV. The first plot shows how well our random forest model did compared to DFT. The black line shows perfect performance. The blue and red dots correspond to the training and test data, respectively. Upon visual inspection and in conjuction with the metrics above, we have achieved a good fit.
 
-Finally, because random forests are intrinsically nonlinear models, they are not as interpretable as say multiple linear regression models. However, we can look under the hood of the random forest model to see which descriptors were the most effective in making these predictions. Simply put, the most important features are those that reduce the training set error the most. There are various ways of calculating this reduction but their description is beyond the scope of this introduction.
+Finally, because random forests are intrinsically nonlinear models, they aren't as interpretable as, say, multiple linear regression models. However, we can look under the hood of the random forest model to see which descriptors were the most effective in making these predictions. Simply put, the most important features are those that reduce the training set error the most. There are various ways of calculating this reduction but their description is beyond the scope of this introduction.
 
-So what does the bottom plot tell us? It tells us that the most important descriptor, i.e. the one with the largest bar, is for `X95_98`, which is the bond distance between two Ni's at the Ni3 site. This means that Ni-Ni bond distance is the most important descriptor of H binding strength. Since we kept the active site the same (Ni3) and applied chemical perturbations around it (replacing P with other nonmetals), our random forest model suggests that dopants apply strain on the Ni3 site, modulating its H binding strength via compression and expansion.
+So what does the bottom plot tell us? It tells us that the most important descriptor, i.e. the one with the largest bar, is for `X95_98`, which is the bond distance between two Ni's at the Ni<sub>3</sub> site. This means that Ni-Ni bond distance is the most important descriptor of H binding strength. Since we kept the active site the same (Ni<sub>3</sub>) and applied chemical perturbations around it (replacing P with other nonmetals), our random forest model suggests that dopants simply apply strain on the Ni<sub>3</sub> site, modulating its H binding strength via compression and expansion.
 
 # The end
 I hope you enjoyed this introduction. Please feel free to get in touch if you have any questions/comments about this and/or suggestions for future content! And, as always, thanks for using this resource!

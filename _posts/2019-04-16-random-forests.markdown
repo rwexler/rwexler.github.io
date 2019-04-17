@@ -9,7 +9,7 @@ In this tutorial, I'm going to show you how easy it is to train and analyze a ra
 
 In my study, I calculated the H binding energy at the Ni<sub>3</sub> site for different nonmetal dopants (B, C, N, O, Si, S, As, Se, & Te) and doping concentrations. There were 55 configurations in total...so I was working with a rather small data set. I should mention that for smaller data sets it's generally advisable to use linear models, however, if care is taken, then random forests can be used as well. Regardless, always make sure to validate your proposed descriptors using an appropriate simulation technique such as density functional theory.
 
-A quick word on random forests. Random forests are made up of decision trees. Each decision tree gets a random subset of the rows and columns of the data and is built using the CART algorithm. [2] For more information, please see chapter 2.4 of my thesis :smile:
+A quick word on random forests. Random forests are made up of decision trees. Each decision tree gets a random subset of the rows and columns of the data and is built using the CART algorithm. [2] For more information, please see chapter 2.4 of my thesis.
 
 ---
 

@@ -17,3 +17,4 @@ At the ACS conference this year (2019) in Orlando, I saw some talks about analyz
 * [Neural Graph Fingerprints](https://github.com/HIPS/neural-fingerprint) - specialized CNNs for predicting the properties of molecules
 * [Covariant Compositional Networks](https://arxiv.org/abs/1801.02144) - another specialized CNNs for molecules
 * [ChemML](https://hachmannlab.github.io/chemml/) - another Python tool for cheminformatics and ML
+* [phonondb](http://phonondb.mtl.kyoto-u.ac.jp/) - database containing phonon band structures, DOS, and thermal properties for hundreds of materials

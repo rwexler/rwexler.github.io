@@ -8,6 +8,8 @@ My [Google Scholar](https://scholar.google.com/citations?user=BMnroAsAAAAJ&hl=en
 
 # Postdoctoral research
 
+---
+
 ...working on it!
 
 # Graduate research

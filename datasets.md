@@ -4,7 +4,7 @@ title: Datasets
 permalink: /datasets/
 ---
 
-At the ACS conference this year (2019) in Orlando, I saw some talks about analyzing publically available chemistry datasets. However, there doesn't seem to be a central repository of chemistry data sets. As such, I have charged myself with doing so. Please inform me if you know of any datasets that I have neglected (my apologies!).
+At the 2019 ACS conference in Orlando, I saw some talks about analyzing publically available chemistry datasets. However, there doesn't seem to be a central repository of chemistry data sets. As such, I have charged myself with doing so. Please inform me if you know of any datasets that I have neglected (my apologies!).
 
 * [PubChemPy](https://pubchempy.readthedocs.io/en/latest/) - Python tool for interacting with the PubChem database
 * [ChemSpiPy](https://chemspipy.readthedocs.io/en/stable/) - Python tool for interacting with the ChemSpider database

@@ -1,4 +1,4 @@
-<p>Today, I was able to successfully compile LAMMPS on DoD machine Koehr. First, I used <code class="highlighter-rouge">mpicc</code> as my C++ compiler. Then, I manually pointed the makefile to Intel’s MPI libraries using the following three lines of code:</p>
+<p>Today, I was able to successfully compile LAMMPS on the DoD machine Koehr. First, I used <code class="highlighter-rouge">mpicc</code> as my C++ compiler. Then, I manually pointed the makefile to Intel’s MPI libraries using the following three lines of code:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MPI_INC =       -I/app/intel/parallel_studio_xe_2018_update1/impi/2018.1.163/intel64/include
 MPI_PATH =      -L/app/intel/parallel_studio_xe_2018_update1/impi/2018.1.163/intel64/lib

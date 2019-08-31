@@ -45,3 +45,13 @@ Here are some tools I use on a regular basis.
 * [Mercury](https://www.ccdc.cam.ac.uk/Community/csd-community/freemercury/) - molecule/crystal visualization software that can also count bonds/angles/dihedrals and calculate the BFDH morphology
 * [Anaconda](https://www.anaconda.com/distribution/) - powerful software manager for Python
 * [USPEX](https://uspex-team.org/en) - evolutionary algorithm for crystal structure prediction
+
+Here are some tools that look cool but I haven't used yet
+
+* [PyChemia](https://materialsdiscovery.github.io/PyChemia/) - global optimization of structures, magnetic moments, and density matrices for DFT+U
+* [atomate](https://atomate.org/) - VASP workflows for electronic band structures, piezoelectric tensor, dielectric tensor, ferroelectricity, nudged elastic band, Raman spectroscopy, and more...
+* [abipy](http://abinit.github.io/abipy/) - Python package for analyzing ABINIT results
+* [abiflows](http://abinit.github.io/abiflows/) - ABINIT workflows
+* [AiiDA](http://www.aiida.net/) - framework for reproducible workflows
+* [PyTorch](https://pytorch.org) - machine learning library for GPUs
+* [QCArchive](https://qcarchive.molssi.org) - quantum chemistry data archive

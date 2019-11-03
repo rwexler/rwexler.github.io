@@ -6,7 +6,7 @@ permalink: /defense/
 
 If you ever have several hours to kill and nothing better to do, then you could (if the situation is really dire) watch my defense or read my [thesis]({{ site.url }}/images/Toward_Realistic_Modeling_of_C.pdf), which are posted below. You can also find some photos from the day courtesy of Dr. Arvin Kakekhani.
 
-{% youtube WC2qlQjaf2c %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WC2qlQjaf2c" frameborder="0" allowfullscreen></iframe>
 
 # Pictures
 

@@ -16,6 +16,10 @@ My [Google Scholar](https://scholar.google.com/citations?user=BMnroAsAAAAJ&hl=en
 
 ---
 
+<img src="/images/bst.jpg" alt="BST" style="width:500px">
+
+**Wexler, R. B.**; Qi, Y.; Rappe, A. M. Sr-induced dipole scatter in Ba<sub>*x*</sub>Sr<sub>1-*x*</sub>TiO<sub>3</sub>: Insights from a transferable-bond valence-based interatomic potential. *Phys. Rev. B.* **2019**, *100*, 174109 (1-9). DOI: [10.1103/PhysRevB.100.174109](https://doi.org/10.1103/PhysRevB.100.174109)
+
 <img src="/images/aigcmc.jpeg" alt="Ab Initio GCMC" style="width:500px;">
 
 **Wexler, R. B.**; Qiu, T.; Rappe, A. M. Automatic Prediction of Surface Phase Diagrams Using *Ab Initio* Grand Canonical Monte Carlo. *J. Phys. Chem. B.* **2019**, *123* (4), pp 2321-2328. DOI: [10.1021/acs.jpcc.8b11093](https://pubs.acs.org/doi/full/10.1021/acs.jpcc.8b11093) 

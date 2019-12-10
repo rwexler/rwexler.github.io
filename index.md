@@ -6,7 +6,7 @@ layout: home
 ---
 <html>
 <head>
-<script src="http://3Dmol.csb.pitt.edu/build/3Dmol-min.js">
+<script src="/3Dmol-min.js">
 </script>
 </head>
 <div id="container-01" class="mol-container">

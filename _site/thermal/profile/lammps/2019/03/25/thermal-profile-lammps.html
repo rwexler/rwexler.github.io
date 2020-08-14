@@ -2,9 +2,9 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Generating thermal profiles for LAMMPS simulations | Robert B. Wexler, PhD</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Generating thermal profiles for LAMMPS simulations" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="This notebook generates thermal profiles for LAMMPS simulations. All you need to do is define the temperatures then the notebook will generate an NVT equilibration phase (10K steps), NPT equilibration phase (40K steps, P = 1.01325 bar), and NPT sampling step (40K steps, P = 1.01325 bar) for each temperature. Should be easy to make modifications. Please feel free to do so. If you’d like me to include your updates, then please shoot me an email with your notebook or Python script." />
@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-03-25T00:00:00-04:00" />
 <script type="application/ld+json">
-{"description":"This notebook generates thermal profiles for LAMMPS simulations. All you need to do is define the temperatures then the notebook will generate an NVT equilibration phase (10K steps), NPT equilibration phase (40K steps, P = 1.01325 bar), and NPT sampling step (40K steps, P = 1.01325 bar) for each temperature. Should be easy to make modifications. Please feel free to do so. If you’d like me to include your updates, then please shoot me an email with your notebook or Python script.","@type":"BlogPosting","url":"/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html","headline":"Generating thermal profiles for LAMMPS simulations","dateModified":"2019-03-25T00:00:00-04:00","datePublished":"2019-03-25T00:00:00-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html"},"@context":"http://schema.org"}</script>
+{"headline":"Generating thermal profiles for LAMMPS simulations","dateModified":"2019-03-25T00:00:00-04:00","datePublished":"2019-03-25T00:00:00-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html"},"description":"This notebook generates thermal profiles for LAMMPS simulations. All you need to do is define the temperatures then the notebook will generate an NVT equilibration phase (10K steps), NPT equilibration phase (40K steps, P = 1.01325 bar), and NPT sampling step (40K steps, P = 1.01325 bar) for each temperature. Should be easy to make modifications. Please feel free to do so. If you’d like me to include your updates, then please shoot me an email with your notebook or Python script.","@type":"BlogPosting","url":"/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Robert B. Wexler, PhD" /></head>
 <body><header class="site-header" role="banner">
@@ -52,7 +52,7 @@
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># define temperatures
-</span><span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">temps</span>
 </code></pre></div></div>
 
@@ -65,25 +65,25 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">:</span>
             <span class="c1"># nvt equilibration
-</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all nvt temp {} {} 1.0"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
+</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all nvt temp {} {} 1.0"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
             <span class="k">print</span><span class="p">(</span><span class="s">"run 10000"</span><span class="p">)</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
             <span class="k">print</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">:</span>
             <span class="c1"># npt equilibration
-</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all npt temp {} {} 1.0 aniso 1.01325 1.01325 5.0"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
+</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all npt temp {} {} 1.0 aniso 1.01325 1.01325 5.0"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
             <span class="k">print</span><span class="p">(</span><span class="s">"run 40000"</span><span class="p">)</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
             <span class="k">print</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
         <span class="k">else</span> <span class="p">:</span>
             <span class="c1"># npt sampling
-</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all npt temp {} {} 1.0 aniso 1.01325 1.01325 5.0"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"dump {} all custom 200 dump{:03d}.xyz x y z"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"dump_modify {} sort id"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all npt temp {} {} 1.0 aniso 1.01325 1.01325 5.0"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"dump {} all custom 200 dump{:03d}.xyz x y z"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"dump_modify {} sort id"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
             <span class="k">print</span><span class="p">(</span><span class="s">"run 40000"</span><span class="p">)</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"write_restart BST.restart{:03d}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"undump {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"write_restart BST.restart{:03d}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"undump {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
             <span class="k">print</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
         <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
 </code></pre></div></div>

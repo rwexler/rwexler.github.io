@@ -1,0 +1,12 @@
+I"�	<p>Here is a little Python script that unzips files into folders with the same name in Linux. Take, for example, the file <code class="language-plaintext highlighter-rouge">test.zip</code>. If it contains a number of files and you unzip using <code class="language-plaintext highlighter-rouge">unzip test.zip</code> on Linux, then they will all be decompressed into your present working directory. If you wanted the files to go into a folder bearing the prefix of zip file, i.e. <code class="language-plaintext highlighter-rouge">test</code>, then you’d have to write a shell script…until now! Just because, I wrote a python script that does the same thing using <code class="language-plaintext highlighter-rouge">unar</code>. Now, <code class="language-plaintext highlighter-rouge">unar</code> can do this for one file but not for several, e.g. as defined using a wildcar <code class="language-plaintext highlighter-rouge">*.zip</code>. My script, called <code class="language-plaintext highlighter-rouge">unzipr</code> (because every Python script needs a fancy name), does just this. Please feel free to use and pass along if you find it helpful!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span> <span class="p">:</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">"unar -d {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>If you create an alias, i.e. add <code class="language-plaintext highlighter-rouge">alias unzipr="python &lt;path-to-unzipr&gt;/unzipr.py"</code> in your <code class="language-plaintext highlighter-rouge">.bashrc</code>, then you can unzip individual or multiple files seamlessly by executing <code class="language-plaintext highlighter-rouge">unzipr *.zip</code> on your command line. Happy zipping!</p>
+:ET

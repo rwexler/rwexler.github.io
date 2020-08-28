@@ -1,0 +1,2 @@
+I"[<p>Today, I figured out that there is a working <code class="language-plaintext highlighter-rouge">pw.x</code> executable for Quantum Espresso on the DoD machines Conrad and Gordon. It is located in <code class="language-plaintext highlighter-rouge">/app/espresso/6.3-intel/bin</code>. All you need is a PBS script with an execution line like</p>
+:ET

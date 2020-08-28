@@ -1,0 +1,7 @@
+I"0<p>Today, I figured out that there is a working <code class="language-plaintext highlighter-rouge">pw.x</code> executable for Quantum Espresso on the DoD machines Conrad and Gordon. It is located in <code class="language-plaintext highlighter-rouge">/app/espresso/6.3-intel/bin</code>. All you need is a PBS script with an execution line like</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aprun -n 32 /app/espresso/6.3-intel/bin/pw.x &lt; qe.in &gt; qe.out
+</code></pre></div></div>
+
+<p>Also, you need to do <code class="language-plaintext highlighter-rouge">module load intel</code> prior to submitting the job. You can either add a line in your <code class="language-plaintext highlighter-rouge">.bashrc</code> or place it in the PBS script. Enjoy!</p>
+:ET

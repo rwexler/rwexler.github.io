@@ -1,0 +1,2 @@
+I"í<p>This notebook generates thermal profiles for LAMMPS simulations. All you need to do is define the temperatures then the notebook will generate an NVT equilibration phase (10K steps), NPT equilibration phase (40K steps, P = 1.01325 bar), and NPT sampling step (40K steps, P = 1.01325 bar) for each temperature. Should be easy to make modifications. Please feel free to do so. If youâ€™d like me to include your updates, then please shoot me an email with your notebook or Python script.</p>
+:ET

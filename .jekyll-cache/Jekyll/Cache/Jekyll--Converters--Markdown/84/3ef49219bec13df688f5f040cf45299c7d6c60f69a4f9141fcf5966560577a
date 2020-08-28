@@ -1,0 +1,10 @@
+I"?<p>If you’re running MD simulations, then this is the post for you. It can sometimes be a nightmare to compress MD trajectories because they can be so large, like multiple GBs (or maybe even TBs if you’re working with gigantic systems). Up until now, I’ve found myself deleting MD trajectors but saving a restart file so that I can regenerate the data if I need to do further processing. This can be somewhat of a drag so I went searching for a way to compress MD trajectories in parallel. That’s when I came across <a href="https://zlib.net/pigz/">pigz</a>. If you already know how to make a <code class="language-plaintext highlighter-rouge">tar.gz</code> file, then it is really easy to use pigz. For example, the pigz command corresponding to</p>
+
+<p><code class="language-plaintext highlighter-rouge">tar zcvf &lt;filename&gt;.tar.gz &lt;filename/directory_name/etc&gt;</code></p>
+
+<p>is</p>
+
+<p><code class="language-plaintext highlighter-rouge">tar cvf - &lt;filename/directory_name/etc&gt; | pigz -n &lt;number_cores&gt; &lt;filename&gt;.tar.gz</code></p>
+
+<p>Enjoy!</p>
+:ET

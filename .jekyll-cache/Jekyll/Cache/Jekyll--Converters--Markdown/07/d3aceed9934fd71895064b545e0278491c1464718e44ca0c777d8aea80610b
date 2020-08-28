@@ -1,0 +1,2 @@
+I"<p>In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from <a href="https://pubs.acs.org/doi/10.1021/jacs.8b00947">my recent paper on tuning the hydrogen evolving activity of Ni<sub>2</sub>P via strain</a>. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni<sub>3</sub> sites, can induce compressive and tensile strain on the Ni<sub>3</sub> sites leading to changes in their H binding strength.</p>
+:ET

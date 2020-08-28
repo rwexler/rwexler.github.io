@@ -1,0 +1,77 @@
+I"½<p>This notebook generates thermal profiles for LAMMPS simulations. All you need to do is define the temperatures then the notebook will generate an NVT equilibration phase (10K steps), NPT equilibration phase (40K steps, P = 1.01325 bar), and NPT sampling step (40K steps, P = 1.01325 bar) for each temperature. Should be easy to make modifications. Please feel free to do so. If youâ€™d like me to include your updates, then please shoot me an email with your notebook or Python script.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># loads numpy
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># define temperatures
+</span><span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">temps</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([10, 20])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># generate thermal profile
+</span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">temps</span> <span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">:</span>
+            <span class="c1"># nvt equilibration
+</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all nvt temp {} {} 1.0"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"run 10000"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">:</span>
+            <span class="c1"># npt equilibration
+</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all npt temp {} {} 1.0 aniso 1.01325 1.01325 5.0"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"run 40000"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="c1"># npt sampling
+</span>            <span class="k">print</span><span class="p">(</span><span class="s">"fix {} all npt temp {} {} 1.0 aniso 1.01325 1.01325 5.0"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"dump {} all custom 200 dump{:03d}.xyz x y z"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"dump_modify {} sort id"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"run 40000"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"write_restart BST.restart{:03d}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"undump {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"unfix {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fix 1 all nvt temp 10 10 1.0
+run 10000
+unfix 1
+
+fix 2 all npt temp 10 10 1.0 aniso 1.01325 1.01325 5.0
+run 40000
+unfix 2
+
+fix 3 all npt temp 10 10 1.0 aniso 1.01325 1.01325 5.0
+dump 3 all custom 200 dump010.xyz x y z
+dump_modify 3 sort id
+run 40000
+write_restart BST.restart010
+undump 3
+unfix 3
+
+fix 4 all nvt temp 20 20 1.0
+run 10000
+unfix 4
+
+fix 5 all npt temp 20 20 1.0 aniso 1.01325 1.01325 5.0
+run 40000
+unfix 5
+
+fix 6 all npt temp 20 20 1.0 aniso 1.01325 1.01325 5.0
+dump 6 all custom 200 dump020.xyz x y z
+dump_modify 6 sort id
+run 40000
+write_restart BST.restart020
+undump 6
+unfix 6
+</code></pre></div></div>
+
+:ET

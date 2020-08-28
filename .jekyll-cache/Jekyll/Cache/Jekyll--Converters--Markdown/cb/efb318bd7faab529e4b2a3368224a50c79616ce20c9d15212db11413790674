@@ -1,0 +1,2 @@
+I"ø<p>Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using <code class="language-plaintext highlighter-rouge">html</code> and <a href="http://3dmol.csb.pitt.edu/index.html">3Dmol.js</a>.</p>
+:ET

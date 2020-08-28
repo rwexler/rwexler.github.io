@@ -1,0 +1,879 @@
+I"�<p>In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from <a href="https://pubs.acs.org/doi/10.1021/jacs.8b00947">my recent paper on tuning the hydrogen evolving activity of Ni<sub>2</sub>P via strain</a>. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni<sub>3</sub> sites, can induce compressive and tensile strain on the Ni<sub>3</sub> sites leading to changes in their H binding strength.</p>
+
+<p>In my study, I calculated the H binding energy at the Ni<sub>3</sub> site for different nonmetal dopants (B, C, N, O, Si, S, As, Se, &amp; Te) and doping concentrations. There were 55 configurations in total…so I was working with a rather small data set. I should mention that for smaller data sets it’s generally advisable to use linear models, however, if care is taken, then random forests can be used as well. Regardless, always make sure to validate your proposed descriptors using an appropriate simulation technique such as density functional theory.</p>
+
+<p>A quick word on random forests. Random forests are made up of decision trees. Each decision tree gets a random subset of the rows and columns of the data and is built using the CART algorithm. [2] For more information, please see chapter 2.4 of my thesis.</p>
+
+<hr />
+
+<p>[1] <strong>Wexler, R. B.</strong>; Martirez, J. M. P.; Rappe, A. M. Chemical Pressure-Driven Enhancement of the Hydrogen Evolving Activity of Ni<sub>2</sub>P from Nonmetal Surface Doping Interpreted via Machine Learning. <em>J. Am. Chem. Soc.</em> <strong>2018</strong>, <em>140</em> (13), pp 4678-4683. DOI: <a href="https://pubs.acs.org/doi/full/10.1021/jacs.8b00947">10.1021/jacs.8b00947</a></p>
+
+<p>[2] L. Breiman, J. Friedman, R. Olshen, and C. Stone. Classification and Regression Trees. Wadsworth, Belmont, CA, 1984.*</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># import necessary modules
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">numpy</code> and <code class="language-plaintext highlighter-rouge">pandas</code> are used for convenient data storage, <code class="language-plaintext highlighter-rouge">matplotlib</code> is used to generate plots, and the scikit learn is used for all things machine learning. For example, we use <code class="language-plaintext highlighter-rouge">train_test_split</code> to do as its name suggests, <code class="language-plaintext highlighter-rouge">RandomForestRegressor</code> trains a random forest, and <code class="language-plaintext highlighter-rouge">r2_score</code>, <code class="language-plaintext highlighter-rouge">mean_squared_error</code>, and <code class="language-plaintext highlighter-rouge">mean_absolute_error</code> are different evaluation metrics (you may like one of them more than the others, though MSE is probably the most robust).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># helper functions
+</span><span class="k">def</span> <span class="nf">drop_nzv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">min_var</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span> <span class="p">:</span>
+    <span class="s">""" drop near zero variance descriptors
+    note: y should be your last column
+    """</span>
+    <span class="n">to_drop</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">data_type</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">dtypes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">data_type</span> <span class="o">==</span> <span class="s">"int64"</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">data_type</span> <span class="o">==</span> <span class="s">"float64"</span><span class="p">)</span> <span class="p">:</span>
+            <span class="n">variance</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">].</span><span class="n">var</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">variance</span> <span class="o">&lt;=</span> <span class="n">min_var</span> <span class="p">:</span>
+                <span class="n">to_drop</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span>
+    <span class="n">to_drop</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">to_drop</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">r2</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">mae</span>
+
+<span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_val</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">data_range</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span> <span class="p">:</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">X_val</span><span class="p">.</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">:</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"green"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_range</span><span class="p">,</span> <span class="n">data_range</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"black"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"DFT"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Predicted"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_importances</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">descriptors</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">feature_importances_</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">model</span><span class="p">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">feature_importances_</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">descriptors</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="err">$$</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>This chunk contains some functions that you may find useful. <code class="language-plaintext highlighter-rouge">drop_nzv</code> takes a dataframe and removes columns whose variance is small, i.e. they are nearly single valued and therefore cannot be used to describe variations in \(y\). <code class="language-plaintext highlighter-rouge">get_results</code> takes a model and calculates the three performance metrics mentioned above. <code class="language-plaintext highlighter-rouge">plot_results</code> plots the actual \(y\) vs. the prediction for both the training and test set.</p>
+
+<p>At this point, we’re ready to start writing some real code. You can download the data from my paper at <a href="http://pubs.acs.org/doi/suppl/10.1021/jacs.8b00947/suppl_file/ja8b00947_si_002.zip">HERE</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># read and inspect data
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"/Users/rwexler/Downloads/Machine_Learning/processed_data.csv"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(55, 31)
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>X</th>
+      <th>nX</th>
+      <th>X95_98</th>
+      <th>X95_100</th>
+      <th>X98_100</th>
+      <th>X98_95_100</th>
+      <th>X95_98_100</th>
+      <th>X95_100_98</th>
+      <th>Avg_Ni_Ni</th>
+      <th>...</th>
+      <th>q106_5</th>
+      <th>q107_6</th>
+      <th>Z</th>
+      <th>m</th>
+      <th>r</th>
+      <th>Avg_qNi</th>
+      <th>Std_qNi</th>
+      <th>Avg_qX</th>
+      <th>Std_qX</th>
+      <th>dGH</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>As</td>
+      <td>1</td>
+      <td>2.772373</td>
+      <td>2.728643</td>
+      <td>2.673381</td>
+      <td>58.146831</td>
+      <td>60.107425</td>
+      <td>61.745744</td>
+      <td>2.724799</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.632433</td>
+      <td>0.016967</td>
+      <td>-0.370600</td>
+      <td>-999.000000</td>
+      <td>-0.467393</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>As</td>
+      <td>2</td>
+      <td>2.701154</td>
+      <td>2.593942</td>
+      <td>2.637543</td>
+      <td>59.709237</td>
+      <td>58.125061</td>
+      <td>62.165703</td>
+      <td>2.644213</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.627867</td>
+      <td>0.015033</td>
+      <td>-0.404850</td>
+      <td>0.024537</td>
+      <td>-0.480859</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>As</td>
+      <td>3</td>
+      <td>2.682490</td>
+      <td>2.685299</td>
+      <td>2.680348</td>
+      <td>59.912592</td>
+      <td>60.095729</td>
+      <td>59.991680</td>
+      <td>2.682712</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.619267</td>
+      <td>0.003819</td>
+      <td>-0.415900</td>
+      <td>0.004303</td>
+      <td>-0.352070</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+      <td>As</td>
+      <td>4</td>
+      <td>2.644063</td>
+      <td>2.569793</td>
+      <td>2.657188</td>
+      <td>61.260029</td>
+      <td>57.991838</td>
+      <td>60.748134</td>
+      <td>2.623681</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.604533</td>
+      <td>0.026364</td>
+      <td>-0.409075</td>
+      <td>0.014458</td>
+      <td>-0.410929</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9</td>
+      <td>As</td>
+      <td>5</td>
+      <td>2.675141</td>
+      <td>2.611050</td>
+      <td>2.575125</td>
+      <td>58.290699</td>
+      <td>59.609085</td>
+      <td>62.100216</td>
+      <td>2.620439</td>
+      <td>...</td>
+      <td>-0.3967</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.589967</td>
+      <td>0.025755</td>
+      <td>-0.405520</td>
+      <td>0.014240</td>
+      <td>-0.441036</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div>
+
+<p>As you can see, there are 55 rows and 31 columns. Information about each of the columns can be found in <code class="language-plaintext highlighter-rouge">processed_data.txt</code>, which comes along with the data. Suffice to say, there are some structure (bond length, angle, etc.) and charge (Lowdin charges) descriptors for each surface and it’s corresponding H binding energy at the Ni<sub>3</sub> site (\(\Delta G_{\rm H}\)) calculated using DFT with the GGA of PBE for the electron exchange and correlation and using DFT-D2 vdW corrections. If this terminology seems foreign to you, I recommend reading chapter 2.1 of my thesis. The first column is useless and can be removed as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># drop first column
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">drop</span><span class="p">([</span><span class="s">"Unnamed: 0"</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>nX</th>
+      <th>X95_98</th>
+      <th>X95_100</th>
+      <th>X98_100</th>
+      <th>X98_95_100</th>
+      <th>X95_98_100</th>
+      <th>X95_100_98</th>
+      <th>Avg_Ni_Ni</th>
+      <th>Std_Ni_Ni</th>
+      <th>...</th>
+      <th>q106_5</th>
+      <th>q107_6</th>
+      <th>Z</th>
+      <th>m</th>
+      <th>r</th>
+      <th>Avg_qNi</th>
+      <th>Std_qNi</th>
+      <th>Avg_qX</th>
+      <th>Std_qX</th>
+      <th>dGH</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>As</td>
+      <td>1</td>
+      <td>2.772373</td>
+      <td>2.728643</td>
+      <td>2.673381</td>
+      <td>58.146831</td>
+      <td>60.107425</td>
+      <td>61.745744</td>
+      <td>2.724799</td>
+      <td>0.049608</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.632433</td>
+      <td>0.016967</td>
+      <td>-0.370600</td>
+      <td>-999.000000</td>
+      <td>-0.467393</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>As</td>
+      <td>2</td>
+      <td>2.701154</td>
+      <td>2.593942</td>
+      <td>2.637543</td>
+      <td>59.709237</td>
+      <td>58.125061</td>
+      <td>62.165703</td>
+      <td>2.644213</td>
+      <td>0.053916</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.627867</td>
+      <td>0.015033</td>
+      <td>-0.404850</td>
+      <td>0.024537</td>
+      <td>-0.480859</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>As</td>
+      <td>3</td>
+      <td>2.682490</td>
+      <td>2.685299</td>
+      <td>2.680348</td>
+      <td>59.912592</td>
+      <td>60.095729</td>
+      <td>59.991680</td>
+      <td>2.682712</td>
+      <td>0.002483</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.619267</td>
+      <td>0.003819</td>
+      <td>-0.415900</td>
+      <td>0.004303</td>
+      <td>-0.352070</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>As</td>
+      <td>4</td>
+      <td>2.644063</td>
+      <td>2.569793</td>
+      <td>2.657188</td>
+      <td>61.260029</td>
+      <td>57.991838</td>
+      <td>60.748134</td>
+      <td>2.623681</td>
+      <td>0.047128</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.604533</td>
+      <td>0.026364</td>
+      <td>-0.409075</td>
+      <td>0.014458</td>
+      <td>-0.410929</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>As</td>
+      <td>5</td>
+      <td>2.675141</td>
+      <td>2.611050</td>
+      <td>2.575125</td>
+      <td>58.290699</td>
+      <td>59.609085</td>
+      <td>62.100216</td>
+      <td>2.620439</td>
+      <td>0.050665</td>
+      <td>...</td>
+      <td>-0.3967</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>0.589967</td>
+      <td>0.025755</td>
+      <td>-0.405520</td>
+      <td>0.014240</td>
+      <td>-0.441036</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 30 columns</p>
+</div>
+
+<p>Viola! Now, let’s use our <code class="language-plaintext highlighter-rouge">drop_nzv</code> function to remove descriptors that have no predictive capability.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># drop near zero variance descriptors
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">drop_nzv</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>nX</th>
+      <th>X95_98</th>
+      <th>X95_100</th>
+      <th>X98_100</th>
+      <th>X98_95_100</th>
+      <th>X95_98_100</th>
+      <th>X95_100_98</th>
+      <th>Avg_Ni_Ni</th>
+      <th>Std_Ni_Ni_Ni</th>
+      <th>...</th>
+      <th>q105_3</th>
+      <th>q108_4</th>
+      <th>q106_5</th>
+      <th>q107_6</th>
+      <th>Z</th>
+      <th>m</th>
+      <th>r</th>
+      <th>Avg_qX</th>
+      <th>Std_qX</th>
+      <th>dGH</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>As</td>
+      <td>1</td>
+      <td>2.772373</td>
+      <td>2.728643</td>
+      <td>2.673381</td>
+      <td>58.146831</td>
+      <td>60.107425</td>
+      <td>61.745744</td>
+      <td>2.724799</td>
+      <td>1.801860</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>-0.370600</td>
+      <td>-999.000000</td>
+      <td>-0.467393</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>As</td>
+      <td>2</td>
+      <td>2.701154</td>
+      <td>2.593942</td>
+      <td>2.637543</td>
+      <td>59.709237</td>
+      <td>58.125061</td>
+      <td>62.165703</td>
+      <td>2.644213</td>
+      <td>2.035953</td>
+      <td>...</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>-0.404850</td>
+      <td>0.024537</td>
+      <td>-0.480859</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>As</td>
+      <td>3</td>
+      <td>2.682490</td>
+      <td>2.685299</td>
+      <td>2.680348</td>
+      <td>59.912592</td>
+      <td>60.095729</td>
+      <td>59.991680</td>
+      <td>2.682712</td>
+      <td>0.091852</td>
+      <td>...</td>
+      <td>-0.4203</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>-0.415900</td>
+      <td>0.004303</td>
+      <td>-0.352070</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>As</td>
+      <td>4</td>
+      <td>2.644063</td>
+      <td>2.569793</td>
+      <td>2.657188</td>
+      <td>61.260029</td>
+      <td>57.991838</td>
+      <td>60.748134</td>
+      <td>2.623681</td>
+      <td>1.757853</td>
+      <td>...</td>
+      <td>-0.4179</td>
+      <td>-0.3876</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>-0.409075</td>
+      <td>0.014458</td>
+      <td>-0.410929</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>As</td>
+      <td>5</td>
+      <td>2.675141</td>
+      <td>2.611050</td>
+      <td>2.575125</td>
+      <td>58.290699</td>
+      <td>59.609085</td>
+      <td>62.100216</td>
+      <td>2.620439</td>
+      <td>1.934610</td>
+      <td>...</td>
+      <td>-0.4162</td>
+      <td>-0.3846</td>
+      <td>-0.3967</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>74.92</td>
+      <td>121</td>
+      <td>-0.405520</td>
+      <td>0.014240</td>
+      <td>-0.441036</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
+
+<p>As a final preprocessing step, we’ll want to remove descriptors that are highly correlated. The reason we may want to do this is because linearly dependent descriptors are redundant, i.e. only one is necessary to explain their affect on \(y\), and models with fewer descriptors are often preferred, especially in the physical sciences! As such, I’ll remove descriptors that have correlation coefficients greater than 0.95. This chunk was adapted from <a href="https://chrisalbon.com/machine_learning/feature_selection/drop_highly_correlated_features/">an awesome blog post by Chris Albon</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># drop highly correlated descriptors
+</span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">corr</span><span class="p">().</span><span class="nb">abs</span><span class="p">()</span>
+<span class="n">upper</span> <span class="o">=</span> <span class="n">corr_matrix</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">bool</span><span class="p">))</span>
+<span class="n">to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="n">column</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">upper</span><span class="p">.</span><span class="n">columns</span> <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">upper</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.95</span><span class="p">)]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(55, 18)
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>nX</th>
+      <th>X95_98</th>
+      <th>X95_100</th>
+      <th>X98_100</th>
+      <th>X98_95_100</th>
+      <th>X95_98_100</th>
+      <th>X95_100_98</th>
+      <th>Std_Ni_Ni_Ni</th>
+      <th>q104_1</th>
+      <th>q103_2</th>
+      <th>q105_3</th>
+      <th>q108_4</th>
+      <th>q106_5</th>
+      <th>q107_6</th>
+      <th>Z</th>
+      <th>r</th>
+      <th>dGH</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>As</td>
+      <td>1</td>
+      <td>2.772373</td>
+      <td>2.728643</td>
+      <td>2.673381</td>
+      <td>58.146831</td>
+      <td>60.107425</td>
+      <td>61.745744</td>
+      <td>1.801860</td>
+      <td>-0.3706</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>121</td>
+      <td>-0.467393</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>As</td>
+      <td>2</td>
+      <td>2.701154</td>
+      <td>2.593942</td>
+      <td>2.637543</td>
+      <td>59.709237</td>
+      <td>58.125061</td>
+      <td>62.165703</td>
+      <td>2.035953</td>
+      <td>-0.3875</td>
+      <td>-0.4222</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>121</td>
+      <td>-0.480859</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>As</td>
+      <td>3</td>
+      <td>2.682490</td>
+      <td>2.685299</td>
+      <td>2.680348</td>
+      <td>59.912592</td>
+      <td>60.095729</td>
+      <td>59.991680</td>
+      <td>0.091852</td>
+      <td>-0.4117</td>
+      <td>-0.4157</td>
+      <td>-0.4203</td>
+      <td>-999.0000</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>121</td>
+      <td>-0.352070</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>As</td>
+      <td>4</td>
+      <td>2.644063</td>
+      <td>2.569793</td>
+      <td>2.657188</td>
+      <td>61.260029</td>
+      <td>57.991838</td>
+      <td>60.748134</td>
+      <td>1.757853</td>
+      <td>-0.4174</td>
+      <td>-0.4134</td>
+      <td>-0.4179</td>
+      <td>-0.3876</td>
+      <td>-999.0000</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>121</td>
+      <td>-0.410929</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>As</td>
+      <td>5</td>
+      <td>2.675141</td>
+      <td>2.611050</td>
+      <td>2.575125</td>
+      <td>58.290699</td>
+      <td>59.609085</td>
+      <td>62.100216</td>
+      <td>1.934610</td>
+      <td>-0.4151</td>
+      <td>-0.4150</td>
+      <td>-0.4162</td>
+      <td>-0.3846</td>
+      <td>-0.3967</td>
+      <td>-999.0</td>
+      <td>33</td>
+      <td>121</td>
+      <td>-0.441036</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>After having cleaned up our data set, we’re now left with only 17 descriptors and 1 column for \(y\) at the far right.</p>
+
+<p>A critical step in the construction of machine learning models is splitting the data into a training and test set. The training set is used to build the model whereas the test set is kept aside, not analyzed, and used only for evaluating the “out of sample” error. The splitting should be done randomly, however, there are some more advanced schemes, e.g. those that split the data so that the distribution of \(y\) values in each subset is more or less the same. Here, we’ll just randomly split the data. Often a good starting point is to use 2/3 of the data for training and 1/3 for testing, however, this is not a hard and fast rule and probably leans towards “too conservative”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># split training and testing set
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">dGH</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="tune-random-forest">Tune random forest</h1>
+<h2 id="n_estimators"><code class="language-plaintext highlighter-rouge">n_estimators</code></h2>
+<p>Random forests have a few parameters that we’ll need to tune in order to minimize the test set error. The first is the number of trees in the random forests, a.k.a. <code class="language-plaintext highlighter-rouge">n_estimators</code>, which we’ll vary from 1 to 40.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># tune n_estimators
+</span><span class="n">n_estimators_list</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">r2_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_estimators_list</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">r2_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_estimators_list</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n_estimators</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">n_estimators_list</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">regr_2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">regr_2</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">r2_train</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_results</span><span class="p">(</span><span class="n">regr_2</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">r2_test</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_results</span><span class="p">(</span><span class="n">regr_2</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_list</span><span class="p">,</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_list</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"n estimators"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r"R$^2$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/images/rfImages/output_15_0.png" style="width:500px;" /></p>
+
+<p>The blue and red lines are the training and test set error, respectively. Tuning <code class="language-plaintext highlighter-rouge">n_estimators</code> ultimately boils down to choosing the value that minimizes test set error, or in the case of the plot above, maximizes \(R^{2}\). Therefore, our tuning indicates that <strong>a small random forest with 4 trees is best</strong>.</p>
+
+<h2 id="max_features"><code class="language-plaintext highlighter-rouge">max_features</code></h2>
+
+<p>Next, we’ll tune the number of features available to each tree during it’s training, a.k.a. <code class="language-plaintext highlighter-rouge">max_features</code>, from 1 (an overly simple and rather silly model unless that one descriptor rocks) to the total number of descriptors that survived our preprocessing above (17).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># max_features
+</span><span class="n">max_features_list</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">r2_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_features_list</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">r2_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_features_list</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_features</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">max_features_list</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">regr_2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">regr_2</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">r2_train</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_results</span><span class="p">(</span><span class="n">regr_2</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">r2_test</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_results</span><span class="p">(</span><span class="n">regr_2</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_features_list</span><span class="p">,</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_features_list</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"max features"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r"R$^2$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/images/rfImages/output_17_0.png" style="width:500px;" /></p>
+
+<p>Here you can see that <strong>the best model includes all of the descriptors</strong>.</p>
+
+<h2 id="max_depth"><code class="language-plaintext highlighter-rouge">max_depth</code></h2>
+
+<p>Finally, we may want to tune the maximum depth of the trees, a.k.a. <code class="language-plaintext highlighter-rouge">max_depth</code>, from 1 to some arbitrarily large number, e.g. 31.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># max_depth
+</span><span class="n">max_depths</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">r2_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_depths</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">r2_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_depths</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">max_depths</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">regr_2</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">regr_2</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">r2_train</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_results</span><span class="p">(</span><span class="n">regr_2</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">r2_test</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_results</span><span class="p">(</span><span class="n">regr_2</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_depths</span><span class="p">,</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_depths</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"max depth"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r"R$^2$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/images/rfImages/output_19_0.png" style="width:500px;" /></p>
+
+<p>It’s clear that deeper trees are better, however, after 7 layers, depth does’nt improve the model and can only lead to overfitting. As such, we’ll stick with a model with <strong>4 trees, 16 descriptors, and a maximum depth of 7 layers</strong>.</p>
+
+<p>Now we’re ready to train our random forest regressor!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># train random forest
+</span><span class="n">regr</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="n">max_features</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
+                             <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+                             <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">regr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># print results
+</span><span class="n">r2</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">mae</span> <span class="o">=</span> <span class="n">get_results</span><span class="p">(</span><span class="n">regr</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"results"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"-------"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"r2   ="</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"rmse ="</span><span class="p">,</span> <span class="n">rmse</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"mae  ="</span><span class="p">,</span> <span class="n">mae</span><span class="p">)</span>
+
+<span class="c1"># plot results
+</span><span class="n">plot_results</span><span class="p">(</span><span class="n">regr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1"># plot descriptor importances
+</span><span class="n">plot_importances</span><span class="p">(</span><span class="n">regr</span><span class="p">,</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>results
+-------
+r2   = 0.8510929000114282
+rmse = 0.07531117819235955
+mae  = 0.0525640930241579
+</code></pre></div></div>
+
+<p><img src="/images/rfImages/output_21_1.png" style="width:500px;" /></p>
+
+<p><img src="/images/rfImages/output_21_2.png" style="width:500px;" /></p>
+
+<p>All righty, then! Let’s take this piece by piece. First, your \(R^{2}\) is 0.85, which is pretty darn good considering we only fed the model simple structure and charge descriptors. The RMSE and MAE are between 0.05 and 0.1 eV, which is excellent considering the intrinsic DFT accuracy for binding energies is around 0.1 eV. The first plot shows how well our random forest model did compared to DFT. The black line shows perfect performance. The blue and red dots correspond to the training and test data, respectively. Upon visual inspection and in conjuction with the metrics above, we have achieved a good fit.</p>
+
+<p>Finally, because random forests are intrinsically nonlinear models, they aren’t as interpretable as, say, multiple linear regression models. However, we can look under the hood of the random forest model to see which descriptors were the most effective in making these predictions. Simply put, the most important features are those that reduce the training set error the most. There are various ways of calculating this reduction but their description is beyond the scope of this introduction.</p>
+
+<p>So what does the bottom plot tell us? It tells us that the most important descriptor, i.e. the one with the largest bar, is for <code class="language-plaintext highlighter-rouge">X95_98</code>, which is the bond distance between two Ni’s at the Ni<sub>3</sub> site. This means that Ni-Ni bond distance is the most important descriptor of H binding strength. Since we kept the active site the same (Ni<sub>3</sub>) and applied chemical perturbations around it (replacing P with other nonmetals), our random forest model suggests that dopants simply apply strain on the Ni<sub>3</sub> site, modulating its H binding strength via compression and expansion.</p>
+
+<h1 id="the-end">The end</h1>
+<p>I hope you enjoyed this introduction. Please feel free to get in touch if you have any questions/comments about this and/or suggestions for future content! And, as always, thanks for using this resource!</p>
+:ET

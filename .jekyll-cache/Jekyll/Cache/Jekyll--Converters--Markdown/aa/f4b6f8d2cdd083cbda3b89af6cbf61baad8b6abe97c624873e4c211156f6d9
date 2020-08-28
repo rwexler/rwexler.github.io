@@ -1,0 +1,62 @@
+I"�<p>This page contains a number of links to resources that I find useful.</p>
+
+<ul>
+  <li><a href="https://www.materialscloud.org/work/tools/seekpath">SeeK-path</a> - find k-point paths for band structure and phonon dispersion plots using crystal structure</li>
+  <li><a href="http://atomsk.univ-lille1.fr/index.php">atomsk</a> - easily generate different types of crystallographic defects</li>
+  <li><a href="http://www.colby.edu/chemistry/PChem/Hartree.html">Colby Energy Converter</a> - useful conversions between different energy units</li>
+  <li><a href="http://halas.rice.edu/conversions">Halas Energy Converter</a> - this one gives you energy to natural frequencies too</li>
+  <li><a href="http://matgenie.materialsvirtuallab.org/">matgenie</a> - generate slab model given Miller index and vacuum/slab size</li>
+  <li><a href="http://www.cse.anl.gov/OldCHMwebsiteContent/compmat/g2-97_cart_neut.txt">Molecular structures</a> - cartesian coordinates for a bunch of molecules</li>
+  <li><a href="https://www.quantum-espresso.org/resources/tutorials/shanghai-2013/hands-on-phonons/phonons_tutorial_shanghai1.pdf">Phonon calculations in QE</a> - a practical introduction</li>
+  <li><a href="https://github.com/maxhutch/quantum-espresso/blob/master/Modules/funct.f90">XC functionals in QE</a> - DFT functionals in QE</li>
+  <li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">Markdown Cheatsheet</a> - a great reference for Markdown formatting</li>
+</ul>
+
+<p>These are some books that I highly recommend.</p>
+
+<ul>
+  <li><a href="https://www.amazon.com/Materials-Modelling-Density-Functional-Theory/dp/0199662444">Materials Modelling using Density Functional Theory</a> - great introduction to practical DFT calculations</li>
+  <li><a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781118892114">Fundamental Concepts in Heterogeneous Catalysis</a> - a compact but comprehensive introduction to theoretical and computational catalysis</li>
+</ul>
+
+<p>Codes I’ve written to automate some processes. Please let me know if you encounter any difficulties.</p>
+
+<ul>
+  <li><a href="https://github.com/rwexler/tools/blob/master/structure/vasp2xsf.py">VASP to xsf structure file converter</a> - just type <code class="language-plaintext highlighter-rouge">python vasp2xsf.py &lt;filename&gt;.POSCAR.vasp</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/structure/cfg2xsf.py">cfg to xsf structure file converter</a> - just type <code class="language-plaintext highlighter-rouge">python cfg2xsf.py &lt;filename&gt;.cfg</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/re-vc-relax.py">Restart QE vc-relax</a> - first change <code class="language-plaintext highlighter-rouge">&lt;filename&gt;.in</code> to <code class="language-plaintext highlighter-rouge">&lt;filename&gt;.in.old</code>, then run <code class="language-plaintext highlighter-rouge">python re-vc-relax.py &lt;filename&gt;.out</code> (note: PBS script should be called <code class="language-plaintext highlighter-rouge">runscript</code>)</li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/k-pt-conv.py">k-convergence in QE</a> - modify <code class="language-plaintext highlighter-rouge">values</code> and then type <code class="language-plaintext highlighter-rouge">python k-pt-conv.py &lt;filename&gt;.in</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/pw-conv.py">plane wave convergence in QE</a> - modify <code class="language-plaintext highlighter-rouge">values</code> and then type <code class="language-plaintext highlighter-rouge">python pw-conv.py &lt;filename&gt;.in</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/lowdin-csv.py">csv of Lowdin charges</a> - wrangles Lowdin charges in a csv file, just type <code class="language-plaintext highlighter-rouge">python lowdin-csv.py &lt;filename&gt;.out</code> with <code class="language-plaintext highlighter-rouge">projwfc.x</code> output</li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/phonons/harmonic.py">Phonon free energy</a> - calculates the phonon free energy for a range of temperatures using QE <code class="language-plaintext highlighter-rouge">ph.x</code> output, just type <code class="language-plaintext highlighter-rouge">python harmonic.py dynmat.out</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/qe2xsf.py">QE to xsf converter</a> - just type <code class="language-plaintext highlighter-rouge">python qe2xsf.py &lt;filename prefix&gt;</code> where the prefix is everything that comes before the <code class="language-plaintext highlighter-rouge">.</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/re-relax.py">Restart QE relax</a> - run <code class="language-plaintext highlighter-rouge">python re-relax.py &lt;filename prefix&gt;</code> (currently doesn’t support fixed atoms)</li>
+</ul>
+
+<p>Here are some tools I use on a regular basis.</p>
+
+<ul>
+  <li><a href="http://jp-minerals.org/vesta/en/">VESTA</a> - static crystal structure visualization</li>
+  <li><a href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a> - efficient visualization of molecular dynamics simulations</li>
+  <li><a href="https://filezilla-project.org/">FileZilla</a> - GUI for file transfers</li>
+  <li><a href="https://inkscape.org/">Inkscape</a> - free vector graphics software</li>
+  <li><a href="https://www.rstudio.com/">RStudio</a> - environment for R programming</li>
+  <li><a href="https://avogadro.cc/">Avogadro</a> - static molecular structure visualization</li>
+  <li><a href="https://www.gnu.org/software/octave/">Octave</a> - free alternative to MATLAB</li>
+  <li><a href="https://www.ccdc.cam.ac.uk/Community/csd-community/freemercury/">Mercury</a> - molecule/crystal visualization software that can also count bonds/angles/dihedrals and calculate the BFDH morphology</li>
+  <li><a href="https://www.anaconda.com/distribution/">Anaconda</a> - powerful software manager for Python</li>
+  <li><a href="https://uspex-team.org/en">USPEX</a> - evolutionary algorithm for crystal structure prediction</li>
+</ul>
+
+<p>Here are some tools that look cool but I haven’t used yet</p>
+
+<ul>
+  <li><a href="https://materialsdiscovery.github.io/PyChemia/">PyChemia</a> - global optimization of structures, magnetic moments, and density matrices for DFT+U</li>
+  <li><a href="https://atomate.org/">atomate</a> - VASP workflows for electronic band structures, piezoelectric tensor, dielectric tensor, ferroelectricity, nudged elastic band, Raman spectroscopy, and more…</li>
+  <li><a href="http://abinit.github.io/abipy/">abipy</a> - Python package for analyzing ABINIT results</li>
+  <li><a href="http://abinit.github.io/abiflows/">abiflows</a> - ABINIT workflows</li>
+  <li><a href="http://www.aiida.net/">AiiDA</a> - framework for reproducible workflows</li>
+  <li><a href="https://pytorch.org">PyTorch</a> - machine learning library for GPUs</li>
+  <li><a href="https://qcarchive.molssi.org">QCArchive</a> - quantum chemistry data archive</li>
+</ul>
+:ET

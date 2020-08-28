@@ -1,0 +1,18 @@
+I"i<p>Today, I was able to successfully compile LAMMPS on the DoD machine Koehr. First, I used <code class="language-plaintext highlighter-rouge">mpicc</code> as my C++ compiler. Then, I manually pointed the makefile to Intel’s MPI libraries using the following three lines of code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MPI_INC =       -I/app/intel/parallel_studio_xe_2018_update1/impi/2018.1.163/intel64/include
+MPI_PATH =      -L/app/intel/parallel_studio_xe_2018_update1/impi/2018.1.163/intel64/lib
+MPI_LIB =
+</code></pre></div></div>
+
+<p>Finally, I manually pointed the makefile to the FFTW3 library as follows :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FFT_INC =       -I/app/COST/fftw3/3.3.5/intel/include
+FFT_PATH =      -L/app/COST/fftw3/3.3.5/intel/lib
+FFT_LIB =       -lfftw3
+</code></pre></div></div>
+
+<p>That’s all she wrote! Of course, I executed make in parallel as <code class="language-plaintext highlighter-rouge">make -j 48 &lt;Makefile suffix&gt;</code>. Next, I’m going to test this recipe on other DoD computers.</p>
+
+<p>P.S. It is necessary to load the modules <code class="language-plaintext highlighter-rouge">costinit</code>, <code class="language-plaintext highlighter-rouge">fftw3/intel/3.3.5</code>, and <code class="language-plaintext highlighter-rouge">compiler/intelmpi/18.0.1.163</code> prior to running LAMMPS. I added two lines in my <code class="language-plaintext highlighter-rouge">.bashrc</code> to take care of this. This can also be done in your PBS script.</p>
+:ET

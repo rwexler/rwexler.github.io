@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="Updated papers.md" />
+    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="changed font?" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="59ff1747-b0a7-4c49-b8fe-1560a74ff95c" />
   <component name="ProjectId" id="1g6cCi9EkFy442xrJYbuW241icT" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -42,8 +43,10 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -54,6 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597438356625</updated>
+      <workItem from="1598621350489" duration="311000" />
     </task>
     <task id="LOCAL-00001" summary="Updated papers.md">
       <created>1597447505462</created>
@@ -62,8 +66,18 @@
       <option name="project" value="LOCAL" />
       <updated>1597447505462</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changed font?">
+      <created>1598621393175</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1598621393175</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -75,20 +89,23 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Updated papers.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated papers.md" />
+    <MESSAGE value="changed font?" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed font?" />
   </component>
   <component name="WindowStateProjectService">
     <state x="221" y="89" key="SettingsEditor" timestamp="1597440147929">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1597440147929" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1597447533623">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="-3413" y="228" key="Vcs.Push.Dialog.v2" timestamp="1598621406471">
+      <screen x="-3840" y="0" width="1920" height="1080" />
     </state>
+    <state x="-3413" y="228" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1440.900/-3840.0.1920.1080@-3840.0.1920.1080" timestamp="1598621406471" />
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597447533623" />
     <state x="508" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597447475315">
       <screen x="0" y="0" width="1440" height="900" />

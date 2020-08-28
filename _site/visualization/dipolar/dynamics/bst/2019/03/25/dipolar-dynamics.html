@@ -4,21 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Visualizing dipolar structure dynamics in (Ba,Sr)TiO3 | Robert B. Wexler, PhD</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Visualizing dipolar structure dynamics in (Ba,Sr)TiO3" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="This notebook outlines how to visualize the dipolar structure of 10% Sr-doped (Ba,Sr)TiO3 from bond valence molecular dynamics (BVMD) simulations. This recipe could be used to visualize the dynamics of any atom-centered vector property, e.g. magnetic moment, molecular orientation, etc. Please let me know if you have any questions, comments, or suggestions." />
 <meta property="og:description" content="This notebook outlines how to visualize the dipolar structure of 10% Sr-doped (Ba,Sr)TiO3 from bond valence molecular dynamics (BVMD) simulations. This recipe could be used to visualize the dynamics of any atom-centered vector property, e.g. magnetic moment, molecular orientation, etc. Please let me know if you have any questions, comments, or suggestions." />
-<link rel="canonical" href="/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html" />
-<meta property="og:url" content="/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html" />
+<link rel="canonical" href="http://localhost:3000/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html" />
+<meta property="og:url" content="http://localhost:3000/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html" />
 <meta property="og:site_name" content="Robert B. Wexler, PhD" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-03-25T00:00:00-04:00" />
 <script type="application/ld+json">
-{"headline":"Visualizing dipolar structure dynamics in (Ba,Sr)TiO3","dateModified":"2019-03-25T00:00:00-04:00","datePublished":"2019-03-25T00:00:00-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html"},"description":"This notebook outlines how to visualize the dipolar structure of 10% Sr-doped (Ba,Sr)TiO3 from bond valence molecular dynamics (BVMD) simulations. This recipe could be used to visualize the dynamics of any atom-centered vector property, e.g. magnetic moment, molecular orientation, etc. Please let me know if you have any questions, comments, or suggestions.","@type":"BlogPosting","url":"/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html","@context":"https://schema.org"}</script>
+{"headline":"Visualizing dipolar structure dynamics in (Ba,Sr)TiO3","dateModified":"2019-03-25T00:00:00-04:00","datePublished":"2019-03-25T00:00:00-04:00","description":"This notebook outlines how to visualize the dipolar structure of 10% Sr-doped (Ba,Sr)TiO3 from bond valence molecular dynamics (BVMD) simulations. This recipe could be used to visualize the dynamics of any atom-centered vector property, e.g. magnetic moment, molecular orientation, etc. Please let me know if you have any questions, comments, or suggestions.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:3000/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html"},"@type":"BlogPosting","url":"http://localhost:3000/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Robert B. Wexler, PhD" /></head>
-<body><header class="site-header" role="banner">
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:3000/feed.xml" title="Robert B. Wexler, PhD" /></head><body><header class="site-header">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Robert B. Wexler, PhD</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -32,8 +31,7 @@
 
         <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/datasets/">Datasets</a><a class="page-link" href="/defense/">D-🤺</a><a class="page-link" href="/links/">Links</a><a class="page-link" href="/papers/">Papers</a></div>
       </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
+</header><main class="page-content" aria-label="Content">
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -58,7 +56,7 @@
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">numpy</code> offers efficient array operations, <code class="highlighter-rouge">pandas</code> provides efficient dataframe operations, <code class="highlighter-rouge">matplotlib</code> is used to make sophicated plots (e.g. <code class="highlighter-rouge">animation</code>s), <code class="highlighter-rouge">os</code> gives command line control, <code class="highlighter-rouge">glob</code> is used to find files with particular names, and <code class="highlighter-rouge">scipy</code> has built-in functions for interpolation, which we’ll need to plot contours.</p>
+<p><code class="language-plaintext highlighter-rouge">numpy</code> offers efficient array operations, <code class="language-plaintext highlighter-rouge">pandas</code> provides efficient dataframe operations, <code class="language-plaintext highlighter-rouge">matplotlib</code> is used to make sophicated plots (e.g. <code class="language-plaintext highlighter-rouge">animation</code>s), <code class="language-plaintext highlighter-rouge">os</code> gives command line control, <code class="language-plaintext highlighter-rouge">glob</code> is used to find files with particular names, and <code class="language-plaintext highlighter-rouge">scipy</code> has built-in functions for interpolation, which we’ll need to plot contours.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">count_lines</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="p">:</span>
     <span class="s">"""function that counts the number of lines in a file named filename"""</span>
@@ -88,9 +86,9 @@
 <span class="n">aplane</span> <span class="o">=</span> <span class="n">subset_df</span><span class="p">[</span><span class="n">subset_df</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mf">2.5</span><span class="p">]</span> <span class="c1"># extracts a 10x10 slice of the structures for x &lt; 2.5 A from the origin
 </span></code></pre></div></div>
 
-<p><code class="highlighter-rouge">filename</code> is the name of a file containing the positions (x, y, z) and components (u, v, w) of the displacement (i.e. local dipole). You can download an example file <a href="https://drive.google.com/open?id=1M_pjh6hqPYO_8LoU4GNYq0U1b7-vu-E4">here</a>. The columns of this file correspond to <code class="highlighter-rouge">x y z u v w</code>. The rows correspond to a particular Ti’s displacement. There are <code class="highlighter-rouge">nstrs</code> structures and <code class="highlighter-rouge">ntis</code> Ti’s per structure; therefore, there are <code class="highlighter-rouge">nstrs * ntis</code> lines in the file.</p>
+<p><code class="language-plaintext highlighter-rouge">filename</code> is the name of a file containing the positions (x, y, z) and components (u, v, w) of the displacement (i.e. local dipole). You can download an example file <a href="https://drive.google.com/open?id=1M_pjh6hqPYO_8LoU4GNYq0U1b7-vu-E4">here</a>. The columns of this file correspond to <code class="language-plaintext highlighter-rouge">x y z u v w</code>. The rows correspond to a particular Ti’s displacement. There are <code class="language-plaintext highlighter-rouge">nstrs</code> structures and <code class="language-plaintext highlighter-rouge">ntis</code> Ti’s per structure; therefore, there are <code class="language-plaintext highlighter-rouge">nstrs * ntis</code> lines in the file.</p>
 
-<p><code class="highlighter-rouge">datafilename</code> is the name of a file containing the positions of the atoms. The structure is a 10x10x10 supercell of BST containing 10% Sr, and 5000 atoms total (hence <code class="highlighter-rouge">ntis = 1000</code>). You can download an example data file <a href="https://drive.google.com/open?id=16Yvj1L44CYCghyJiRHnT5o7lWt4TJxA3">here</a>.</p>
+<p><code class="language-plaintext highlighter-rouge">datafilename</code> is the name of a file containing the positions of the atoms. The structure is a 10x10x10 supercell of BST containing 10% Sr, and 5000 atoms total (hence <code class="language-plaintext highlighter-rouge">ntis = 1000</code>). You can download an example data file <a href="https://drive.google.com/open?id=16Yvj1L44CYCghyJiRHnT5o7lWt4TJxA3">here</a>.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Read the Ti displacements into an array of dimension nstrs * ntis * 6, where 6 corresponds to x, y, z, u, v, w
 # This may take a few seconds to complete
@@ -19336,7 +19334,7 @@ AAAtaWxzdAAAACWpdG9vAAAAHWRhdGEAAAABAAAAAExhdmY1OC4yMC4xMDA=
   Your browser does not support the video tag.
 </video>
 
-<p>Purple and yellow dots correspond to the positions of Ba and Sr, respectively, at time 0. Black arrows corresponds to the dynamic Ti displacements. For 100 K, you can see (partially) that the polarization is pointing along [111], which is consistent with low-temperature, ferroelectric, rhombohedral structure of 10% Sr BST. For more information on <code class="highlighter-rouge">quiver</code> plots, please see <code class="highlighter-rouge">matplotlib</code>’s <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.quiver.html">documentation</a>.</p>
+<p>Purple and yellow dots correspond to the positions of Ba and Sr, respectively, at time 0. Black arrows corresponds to the dynamic Ti displacements. For 100 K, you can see (partially) that the polarization is pointing along [111], which is consistent with low-temperature, ferroelectric, rhombohedral structure of 10% Sr BST. For more information on <code class="language-plaintext highlighter-rouge">quiver</code> plots, please see <code class="language-plaintext highlighter-rouge">matplotlib</code>’s <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.quiver.html">documentation</a>.</p>
 
 <p>References:</p>
 <ol>
@@ -19355,26 +19353,30 @@ AAAtaWxzdAAAACWpdG9vAAAAHWRhdGEAAAABAAAAAExhdmY1OC4yMC4xMDA=
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Robert B. Wexler, PhD</h2>
-
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
         <ul class="contact-list">
-          <li class="p-name">Robert B. Wexler, PhD</li><li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li></ul>
+          <li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li>
+        </ul>
       </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/rwexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">rwexler</span></a></li><li><a href="https://www.twitter.com/robertowexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">robertowexler</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>Tips and tricks for electronic structure calculations from a  PhD in chemistry.</p>
+      <div class="footer-col">
+        <p>Tips and tricks for computational materials from a PhD in chemistry.
+</p>
       </div>
     </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/rwexler" title="rwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/robertwexler" title="robertwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/robertowexler" title="robertowexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul></div>
 
   </div>
 
 </footer>
-
   </body>
 
 </html>

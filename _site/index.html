@@ -3,20 +3,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Robert B. Wexler, PhD | Tips and tricks for electronic structure calculations from a PhD in chemistry.</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<title>Robert B. Wexler, PhD | Tips and tricks for computational materials from a PhD in chemistry.</title>
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Robert B. Wexler, PhD" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Tips and tricks for electronic structure calculations from a PhD in chemistry." />
-<meta property="og:description" content="Tips and tricks for electronic structure calculations from a PhD in chemistry." />
-<link rel="canonical" href="/" />
-<meta property="og:url" content="/" />
+<meta name="description" content="Tips and tricks for computational materials from a PhD in chemistry." />
+<meta property="og:description" content="Tips and tricks for computational materials from a PhD in chemistry." />
+<link rel="canonical" href="http://localhost:3000/" />
+<meta property="og:url" content="http://localhost:3000/" />
 <meta property="og:site_name" content="Robert B. Wexler, PhD" />
 <script type="application/ld+json">
-{"headline":"Robert B. Wexler, PhD","description":"Tips and tricks for electronic structure calculations from a PhD in chemistry.","@type":"WebSite","url":"/","name":"Robert B. Wexler, PhD","@context":"https://schema.org"}</script>
+{"headline":"Robert B. Wexler, PhD","description":"Tips and tricks for computational materials from a PhD in chemistry.","@type":"WebSite","url":"http://localhost:3000/","name":"Robert B. Wexler, PhD","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Robert B. Wexler, PhD" /></head>
-<body><header class="site-header" role="banner">
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:3000/feed.xml" title="Robert B. Wexler, PhD" /></head><body><header class="site-header">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Robert B. Wexler, PhD</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -30,12 +29,9 @@
 
         <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/datasets/">Datasets</a><a class="page-link" href="/defense/">D-🤺</a><a class="page-link" href="/links/">Links</a><a class="page-link" href="/papers/">Papers</a></div>
       </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
+</header><main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><p>well hello</p>
-
-<html>
+        <div class="home"><html>
 <head>
 <script src="/3Dmol-min.js">
 </script>
@@ -63,69 +59,70 @@ $(function() {
 </script>
 </html>
 <h2 class="post-list-heading">Posts</h2>
-    <ul class="post-list"><li><span class="post-meta">Dec 10, 2019</span>
+    <ul class="post-list"><li><span class="post-meta">Aug 20, 2020</span>
+        <h3>
+          <a class="post-link" href="/remove/duplicate/atoms/structures/2020/08/20/remove-duplicates.html">
+            Removing duplicate atoms from structures
+          </a>
+        </h3><p>Sometimes <img src="https://icsd.products.fiz-karlsruhe.de/" alt="ICSD" /> structures contain duplicate atoms…I learned 
+the hard way. I was recently running some <img src="https://www.vasp.at/" alt="VASP" /> calculations and was getting errors 
+like <code class="language-plaintext highlighter-rouge">WARNING: CNORMN: search vector ill defined</code>. Additionally, I was finding that changing <code class="language-plaintext highlighter-rouge">ALGO</code> to <code class="language-plaintext highlighter-rouge">All</code> 
+was producing the same error, leading to my conclusion that I likely had a problematic structure. Using 
+<img src="https://pymatgen.org/" alt="pymatgen" />, you can quickly check if a structure contains duplicate atoms.</p>
+</li><li><span class="post-meta">Dec 10, 2019</span>
         <h3>
           <a class="post-link" href="/markdown/3dmol.js/2019/12/10/3dmol.html">
             Visualizing crystal structures in Markdown using 3Dmol.js
           </a>
-        </h3><p>Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using <code class="highlighter-rouge">html</code> and <a href="http://3dmol.csb.pitt.edu/index.html">3Dmol.js</a>.</p>
-
+        </h3><p>Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using <code class="language-plaintext highlighter-rouge">html</code> and <a href="http://3dmol.csb.pitt.edu/index.html">3Dmol.js</a>.</p>
 </li><li><span class="post-meta">Aug 31, 2019</span>
         <h3>
           <a class="post-link" href="/atomic/simulation/environment/2019/08/31/ase-examples.html">
             Introduction to the Atomic Simulation Environment
           </a>
         </h3><p>The Atomic Simulation Environment (ASE) is a set of useful Python modules for manipulating and visualizing structures, setting up calculations/simulations, and converting between different file formats. Here is a link to ASE’s documentation: <a href="https://wiki.fysik.dtu.dk/ase/">https://wiki.fysik.dtu.dk/ase/</a></p>
-
 </li><li><span class="post-meta">Jul 15, 2019</span>
         <h3>
           <a class="post-link" href="/unzip/python/linux/2019/07/15/unar-python.html">
             Unzipping files into folders with the same name in Linux
           </a>
-        </h3><p>Here is a little Python script that unzips files into folders with the same name in Linux. Take, for example, the file <code class="highlighter-rouge">test.zip</code>. If it contains a number of files and you unzip using <code class="highlighter-rouge">unzip test.zip</code> on Linux, then they will all be decompressed into your present working directory. If you wanted the files to go into a folder bearing the prefix of zip file, i.e. <code class="highlighter-rouge">test</code>, then you’d have to write a shell script…until now! Just because, I wrote a python script that does the same thing using <code class="highlighter-rouge">unar</code>. Now, <code class="highlighter-rouge">unar</code> can do this for one file but not for several, e.g. as defined using a wildcar <code class="highlighter-rouge">*.zip</code>. My script, called <code class="highlighter-rouge">unzipr</code> (because every Python script needs a fancy name), does just this. Please feel free to use and pass along if you find it helpful!</p>
-
+        </h3><p>Here is a little Python script that unzips files into folders with the same name in Linux. Take, for example, the file <code class="language-plaintext highlighter-rouge">test.zip</code>. If it contains a number of files and you unzip using <code class="language-plaintext highlighter-rouge">unzip test.zip</code> on Linux, then they will all be decompressed into your present working directory. If you wanted the files to go into a folder bearing the prefix of zip file, i.e. <code class="language-plaintext highlighter-rouge">test</code>, then you’d have to write a shell script…until now! Just because, I wrote a python script that does the same thing using <code class="language-plaintext highlighter-rouge">unar</code>. Now, <code class="language-plaintext highlighter-rouge">unar</code> can do this for one file but not for several, e.g. as defined using a wildcar <code class="language-plaintext highlighter-rouge">*.zip</code>. My script, called <code class="language-plaintext highlighter-rouge">unzipr</code> (because every Python script needs a fancy name), does just this. Please feel free to use and pass along if you find it helpful!</p>
 </li><li><span class="post-meta">Apr 16, 2019</span>
         <h3>
           <a class="post-link" href="/descriptor/catalysis/random/forest/2019/04/16/random-forests.html">
             Finding descriptors for catalysis using random forests
           </a>
         </h3><p>In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from <a href="https://pubs.acs.org/doi/10.1021/jacs.8b00947">my recent paper on tuning the hydrogen evolving activity of Ni<sub>2</sub>P via strain</a>. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni<sub>3</sub> sites, can induce compressive and tensile strain on the Ni<sub>3</sub> sites leading to changes in their H binding strength.</p>
-
 </li><li><span class="post-meta">Mar 25, 2019</span>
         <h3>
           <a class="post-link" href="/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html">
             Visualizing dipolar structure dynamics in (Ba,Sr)TiO3
           </a>
         </h3><p>This notebook outlines how to visualize the dipolar structure of 10% Sr-doped (Ba,Sr)TiO3 from bond valence molecular dynamics (BVMD) simulations. This recipe could be used to visualize the dynamics of any atom-centered vector property, e.g. magnetic moment, molecular orientation, etc. Please let me know if you have any questions, comments, or suggestions.</p>
-
 </li><li><span class="post-meta">Mar 25, 2019</span>
         <h3>
           <a class="post-link" href="/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html">
             Generating thermal profiles for LAMMPS simulations
           </a>
         </h3><p>This notebook generates thermal profiles for LAMMPS simulations. All you need to do is define the temperatures then the notebook will generate an NVT equilibration phase (10K steps), NPT equilibration phase (40K steps, P = 1.01325 bar), and NPT sampling step (40K steps, P = 1.01325 bar) for each temperature. Should be easy to make modifications. Please feel free to do so. If you’d like me to include your updates, then please shoot me an email with your notebook or Python script.</p>
-
 </li><li><span class="post-meta">Mar 24, 2019</span>
         <h3>
           <a class="post-link" href="/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html">
             gzip in parallel using pigz
           </a>
-        </h3><p>If you’re running MD simulations, then this is the post for you. It can sometimes be a nightmare to compress MD trajectories because they can be so large, like multiple GBs (or maybe even TBs if you’re working with gigantic systems). Up until now, I’ve found myself deleting MD trajectors but saving a restart file so that I can regenerate the data if I need to do further processing. This can be somewhat of a drag so I went searching for a way to compress MD trajectories in parallel. That’s when I came across <a href="https://zlib.net/pigz/">pigz</a>. If you already know how to make a <code class="highlighter-rouge">tar.gz</code> file, then it is really easy to use pigz. For example, the pigz command corresponding to</p>
-
+        </h3><p>If you’re running MD simulations, then this is the post for you. It can sometimes be a nightmare to compress MD trajectories because they can be so large, like multiple GBs (or maybe even TBs if you’re working with gigantic systems). Up until now, I’ve found myself deleting MD trajectors but saving a restart file so that I can regenerate the data if I need to do further processing. This can be somewhat of a drag so I went searching for a way to compress MD trajectories in parallel. That’s when I came across <a href="https://zlib.net/pigz/">pigz</a>. If you already know how to make a <code class="language-plaintext highlighter-rouge">tar.gz</code> file, then it is really easy to use pigz. For example, the pigz command corresponding to</p>
 </li><li><span class="post-meta">Jan 29, 2019</span>
         <h3>
           <a class="post-link" href="/qe/2019/01/29/running-qe-on-conrad.html">
             Running Quantum Espresso on Conrad and Gordon
           </a>
-        </h3><p>Today, I figured out that there is a working <code class="highlighter-rouge">pw.x</code> executable for Quantum Espresso on the DoD machines Conrad and Gordon. It is located in <code class="highlighter-rouge">/app/espresso/6.3-intel/bin</code>. All you need is a PBS script with an execution line like</p>
-
+        </h3><p>Today, I figured out that there is a working <code class="language-plaintext highlighter-rouge">pw.x</code> executable for Quantum Espresso on the DoD machines Conrad and Gordon. It is located in <code class="language-plaintext highlighter-rouge">/app/espresso/6.3-intel/bin</code>. All you need is a PBS script with an execution line like</p>
 </li><li><span class="post-meta">Jan 28, 2019</span>
         <h3>
           <a class="post-link" href="/compiling/lammps/2019/01/28/compiling-lammps-on-koehr.html">
             Compiling LAMMPS on Koehr
           </a>
-        </h3><p>Today, I was able to successfully compile LAMMPS on the DoD machine Koehr. First, I used <code class="highlighter-rouge">mpicc</code> as my C++ compiler. Then, I manually pointed the makefile to Intel’s MPI libraries using the following three lines of code:</p>
-
+        </h3><p>Today, I was able to successfully compile LAMMPS on the DoD machine Koehr. First, I used <code class="language-plaintext highlighter-rouge">mpicc</code> as my C++ compiler. Then, I manually pointed the makefile to Intel’s MPI libraries using the following three lines of code:</p>
 </li></ul>
 
     <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p></div>
@@ -136,26 +133,30 @@ $(function() {
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Robert B. Wexler, PhD</h2>
-
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
         <ul class="contact-list">
-          <li class="p-name">Robert B. Wexler, PhD</li><li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li></ul>
+          <li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li>
+        </ul>
       </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/rwexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">rwexler</span></a></li><li><a href="https://www.twitter.com/robertowexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">robertowexler</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>Tips and tricks for electronic structure calculations from a  PhD in chemistry.</p>
+      <div class="footer-col">
+        <p>Tips and tricks for computational materials from a PhD in chemistry.
+</p>
       </div>
     </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/rwexler" title="rwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/robertwexler" title="robertwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/robertowexler" title="robertowexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul></div>
 
   </div>
 
 </footer>
-
   </body>
 
 </html>

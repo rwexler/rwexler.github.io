@@ -19,13 +19,93 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="changed font to times?">
-      <change beforePath="$PROJECT_DIR$/_site/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/_site/assets/main.css" afterDir="false" />
+    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="changed font to futura?">
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/07/7d2457b731dff8cf5d68bcb6b0bec3e9bd62edbee16803f310c5ac69c5f886" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/0f/a60616d448b02c8bf958983e3e064842b9fafd628523f922b68f39fece01d8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/16/d5deac7c4ead3e2aa20b1f472c27c1a6dee284b361a88a92aab4898712e1eb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/23/304b39d25f66241a9a2c5fc5a3e3216e758f341326c4c91dd6b4649defc69f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/26/75a7ae1aefaf73fa653f48c17b9970e45dce5d2867b4773f40468db85bbf3a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/2a/664a3d8c0a58d99876a1e0d97cec21ad13007fe5b189279c67df6f1413def0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/2c/579c5a13dcc207a1d49b767c9cb8f4f63a184c0526edac3175c0fc798c958e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/2c/f0d0914ac2cebf16f4eb4729cb01801a228c1fbd8e0955ac30c609f003d3d5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/2d/1c779f1bb186a9f238b557778af329f422530144859d73720267796031d115" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/32/fc3ff80501b4293beb1e2ce497bee5d05da712ae225c67d94caf0ed46d18bc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/3b/d0b9561d701741d5ad4a4245718d53f8c5285ea1da0bd5e8f0f77a65432286" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/45/c4364b0b508d786443ef06f9df8e8dfba9ea20b053270ceac2012064fc304c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/4c/9cf30119ea128d1c24d5dfde6ca665334905d77ee4ea2f780d9460c891dfdd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/4f/c18c46ad7c0fee8407ec0d39bd9f8aa6e1ecdc2cdc2625a1509a16f604aeea" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/55/25e035866bd6c7c97375cbb3f69d9f9a041e5fa00d97648cc3e16db191f168" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/6f/c7d7cf7058ea7815cb278bd9667c67808e564a8fc4585648024dc2cfa5b9a4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/6f/e4894f82b3cc5e8eb182504d9948f5c052e5f3872f19fdbb970ab818bbb47e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/70/9c1ddd56ad8ca82a80a554b1938c465017bf79dc21c29d336f2f69f0846f54" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/7f/a1b47c0bce4a3bcca601575a852a098d6e9b6b253696c7bbb9d8eb5869de07" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/80/11e2f7ac53059606e91031ab2ef3fe07279e742d8368d6f75aba03707f21af" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/9c/8d605d38011d9dec75becce6f4a2c99e465e1ed35d0efc459386a501283cb8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/9e/b8fd1f2723fb24c0ae981e05f4841b926354340ff2c3d2acc2ed2b67010456" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/a0/dae79d0b09c671f635c60e914cb6fe3ea9df8dcf7a9e7d5fb48590acced909" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/ad/f27e8a6ebbf26b6a4bbdaab2a55cf36ce3212e9460def4a83ff283452e915b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/ca/51261c622fdd60905aba81705062801cf6cf00db0b8f6245c935d8fbcfc624" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/ce/3a6002cf8b9d0c0208af706368d7f127644da6f5414290aaed35623da84772" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/ce/7c41cb7d2b62ffab388e7335bf3de4afb1dfeb2f91c0b33da254749ad5b81c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/d5/c64f6bf8cb2c3b8d41a11d3c245b0b0ba8b4f0e3c6ccef4190559f373c6c2b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/e7/9cbe077c0382190a71563475c0771261c23f36be5d9c6ad56e568d8e17fb91" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/f4/7a0784ca65c0916a5a6c1ccf916c52d2361547a9777df46456d43feafcd670" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_includes/custom-head.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_includes/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_includes/head.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_includes/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_includes/social.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/2020-08-28-remove-duplicates.markdown" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/_base.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/_layout.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/custom-styles.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/custom-variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/initialize.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/skins/classic.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/skins/dark.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/skins/solarized-dark.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sass/minima/skins/solarized.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_site/remove/duplicate/atoms/structures/2020/08/20/remove-duplicates.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minima.gemspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/robertwexler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/robertwexler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/about/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/about/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/assets/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/assets/minima-social-icons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/_site/assets/minima-social-icons.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/atomic/simulation/environment/2019/08/31/ase-examples.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/atomic/simulation/environment/2019/08/31/ase-examples.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/compiling/lammps/2019/01/28/compiling-lammps-on-koehr.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/compiling/lammps/2019/01/28/compiling-lammps-on-koehr.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/datasets/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/datasets/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/defense/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/defense/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/descriptor/catalysis/random/forest/2019/04/16/random-forests.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/descriptor/catalysis/random/forest/2019/04/16/random-forests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/feed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_site/feed.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/links/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/links/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/markdown/3dmol.js/2019/12/10/3dmol.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/markdown/3dmol.js/2019/12/10/3dmol.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/papers/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/papers/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/qe/2019/01/29/running-qe-on-conrad.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/qe/2019/01/29/running-qe-on-conrad.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/unzip/python/linux/2019/07/15/unar-python.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/unzip/python/linux/2019/07/15/unar-python.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.scss" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package" />
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,10 +123,23 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/css" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -59,7 +152,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597438356625</updated>
-      <workItem from="1598621350489" duration="688000" />
+      <workItem from="1598621350489" duration="5462000" />
+      <workItem from="1598629430146" duration="1460000" />
     </task>
     <task id="LOCAL-00001" summary="Updated papers.md">
       <created>1597447505462</created>
@@ -82,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598621822504</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="changed font to futura?">
+      <created>1598622062202</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1598622062202</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,17 +206,18 @@
     <MESSAGE value="Updated papers.md" />
     <MESSAGE value="changed font?" />
     <MESSAGE value="changed font to times?" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed font to times?" />
+    <MESSAGE value="changed font to futura?" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed font to futura?" />
   </component>
   <component name="WindowStateProjectService">
     <state x="221" y="89" key="SettingsEditor" timestamp="1597440147929">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1597440147929" />
-    <state x="-3413" y="228" key="Vcs.Push.Dialog.v2" timestamp="1598621828578">
+    <state x="-3413" y="228" key="Vcs.Push.Dialog.v2" timestamp="1598622068263">
       <screen x="-3840" y="0" width="1920" height="1080" />
     </state>
-    <state x="-3413" y="228" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1440.900/-3840.0.1920.1080@-3840.0.1920.1080" timestamp="1598621828578" />
+    <state x="-3413" y="228" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1440.900/-3840.0.1920.1080@-3840.0.1920.1080" timestamp="1598622068263" />
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597447533623" />
     <state x="508" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597447475315">
       <screen x="0" y="0" width="1440" height="900" />

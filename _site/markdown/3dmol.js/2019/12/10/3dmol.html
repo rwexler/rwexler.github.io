@@ -4,21 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Visualizing crystal structures in Markdown using 3Dmol.js | Robert B. Wexler, PhD</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Visualizing crystal structures in Markdown using 3Dmol.js" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using html and 3Dmol.js." />
 <meta property="og:description" content="Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using html and 3Dmol.js." />
-<link rel="canonical" href="/markdown/3dmol.js/2019/12/10/3dmol.html" />
-<meta property="og:url" content="/markdown/3dmol.js/2019/12/10/3dmol.html" />
+<link rel="canonical" href="http://localhost:3000/markdown/3dmol.js/2019/12/10/3dmol.html" />
+<meta property="og:url" content="http://localhost:3000/markdown/3dmol.js/2019/12/10/3dmol.html" />
 <meta property="og:site_name" content="Robert B. Wexler, PhD" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-12-10T00:00:00-05:00" />
 <script type="application/ld+json">
-{"headline":"Visualizing crystal structures in Markdown using 3Dmol.js","dateModified":"2019-12-10T00:00:00-05:00","datePublished":"2019-12-10T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"/markdown/3dmol.js/2019/12/10/3dmol.html"},"description":"Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using html and 3Dmol.js.","@type":"BlogPosting","url":"/markdown/3dmol.js/2019/12/10/3dmol.html","@context":"https://schema.org"}</script>
+{"headline":"Visualizing crystal structures in Markdown using 3Dmol.js","dateModified":"2019-12-10T00:00:00-05:00","datePublished":"2019-12-10T00:00:00-05:00","description":"Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using html and 3Dmol.js.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:3000/markdown/3dmol.js/2019/12/10/3dmol.html"},"@type":"BlogPosting","url":"http://localhost:3000/markdown/3dmol.js/2019/12/10/3dmol.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Robert B. Wexler, PhD" /></head>
-<body><header class="site-header" role="banner">
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:3000/feed.xml" title="Robert B. Wexler, PhD" /></head><body><header class="site-header">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Robert B. Wexler, PhD</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -32,8 +31,7 @@
 
         <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/datasets/">Datasets</a><a class="page-link" href="/defense/">D-🤺</a><a class="page-link" href="/links/">Links</a><a class="page-link" href="/papers/">Papers</a></div>
       </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
+</header><main class="page-content" aria-label="Content">
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -45,7 +43,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using <code class="highlighter-rouge">html</code> and <a href="http://3dmol.csb.pitt.edu/index.html">3Dmol.js</a>.</p>
+    <p>Have you ever wanted to embed a crystal structure visualization in your website? Oddly specific question, I know, but recently I found my wanting to do this. As you can see on my homepage, I have finally achieved success but it took a few days to work out the kinks. In order to make sure that no one else endures my pain, here is how you can do this in Markdown using <code class="language-plaintext highlighter-rouge">html</code> and <a href="http://3dmol.csb.pitt.edu/index.html">3Dmol.js</a>.</p>
 
 <blockquote>
   <p>Caveat: I’ve worked this out for <a href="https://jekyllrb.com">Jekyll</a> but I’m pretty sure the approach is extensible.</p>
@@ -53,13 +51,13 @@
 
 <h1 id="step-1">Step 1</h1>
 
-<p>Take your crystal structure file and convert it into a <a href="http://www.wwpdb.org">pdb</a> file. I started out with an <a href="http://www.xcrysden.org">xsf</a> but, in principle, you could start out from a [cif][https://www.iucr.org/resources/cif], <a href="https://www.vasp.at">VASP</a> POSCAR, or any other crystal structure data file, for that matter. If you’re lucky, you might be starting out with a pdf file! You will need to find a software package that converts your file into a pdb. Some packages you might consider are <a href="https://jp-minerals.org/vesta/en/">VESTA</a>, <a href="https://avogadro.cc">Avogadro</a>, and <a href="https://www.ccdc.cam.ac.uk/solutions/csd-system/components/mercury/">Mercury</a>; all of these are free. If you’re willing to shell out, you could also get <a href="http://crystalmaker.com">CrystalMaker</a>. For reference, I’ve used CrystalMaker and here is the <a href="/images/structures/5934-refined.pdb">pdb</a> I generated. This structure is an Ag<sub>10</sub>O<sub>7</sub> overlayer that happens to form on the Ag(111) surface in an O<sub>2</sub> atmosphere. For more information on this system and the ab initio grand canonical Monte Carlo method I used to find it, check out my recent <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpcc.8b11093">paper</a> in the Journal of Physical Chemistry C.</p>
+<p>Take your crystal structure file and convert it into a <a href="http://www.wwpdb.org">pdb</a> file. I started out with an <a href="http://www.xcrysden.org">xsf</a> but, in principle, you could start out from a [cif][https://www.iucr.org/resources/cif], <a href="https://www.vasp.at">VASP</a> POSCAR, or any other crystal structure data file, for that matter. If you’re lucky, you might be starting out with a pdf file! You will need to find a software package that converts your file into a pdb. Some packages you might consider are <a href="https://jp-minerals.org/vesta/en/">VESTA</a>, <a href="https://avogadro.cc">Avogadro</a>, and <a href="https://www.ccdc.cam.ac.uk/solutions/csd-system/components/mercury/">Mercury</a>; all of these are free. If you’re willing to shell out, you could also get <a href="http://crystalmaker.com">CrystalMaker</a>. For reference, I’ve used CrystalMaker and here is the <a href="http://localhost:3000/images/structures/5934-refined.pdb">pdb</a> I generated. This structure is an Ag<sub>10</sub>O<sub>7</sub> overlayer that happens to form on the Ag(111) surface in an O<sub>2</sub> atmosphere. For more information on this system and the ab initio grand canonical Monte Carlo method I used to find it, check out my recent <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpcc.8b11093">paper</a> in the Journal of Physical Chemistry C.</p>
 
 <h1 id="step-2">Step 2</h1>
 
-<p>Now you need to process your pdf file. It turns out that the JavaScript software that we will use, i.e. 3Dmol.js, requires all line breaks to be written as <code class="highlighter-rouge">\n</code>. Instead of doing this by hand, here’s how you can do it on the command line:</p>
+<p>Now you need to process your pdf file. It turns out that the JavaScript software that we will use, i.e. 3Dmol.js, requires all line breaks to be written as <code class="language-plaintext highlighter-rouge">\n</code>. Instead of doing this by hand, here’s how you can do it on the command line:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>awk '{printf "%s\\n", $0}' &lt;path to file&gt; | sed "s/'/\\\'/g"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>awk '{printf "%s\\n", $0}' &lt;path to file&gt; | sed "s/'/\\\'/g"
 </code></pre></div></div>
 
 <p>Hold on to this output, we will need it in a moment.</p>
@@ -96,14 +94,14 @@
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
-<p>Woah, nelly! It looks like a lot but it really isn’t. Everything is sandwiched between the html tags. Between the head tags is a script tag that contains the path to a minimal implementation of 3Dmol.js, which can be found <a href="/3Dmol-min.js">here</a>. 3Dmol.js contains different functions for reading, configuring, and plotting molecules and crystal structures. The div tag defines a container that will hold the crystal structure and the style tag defines its size. For example, we set the height to be 400 px and the width to be 60% of the that.</p>
+<p>Woah, nelly! It looks like a lot but it really isn’t. Everything is sandwiched between the html tags. Between the head tags is a script tag that contains the path to a minimal implementation of 3Dmol.js, which can be found <a href="http://localhost:3000/3Dmol-min.js">here</a>. 3Dmol.js contains different functions for reading, configuring, and plotting molecules and crystal structures. The div tag defines a container that will hold the crystal structure and the style tag defines its size. For example, we set the height to be 400 px and the width to be 60% of the that.</p>
 
-<p>Finally, we get to the meat of the script where we pass the structure and define how we would like it plotted. The first and second lines of the function link to the container and set the background color to white, respectively. The third line reads these settings and creates a viewer, our molecular canvas, per say. Now’s the time where we add the structure. The <code class="highlighter-rouge">addModel</code> method has two arguments: (1) a string containing the contents of the crystal structure file and (2) a string identifying what type of file it is. The reason I chose to use pdb files is because pbd was the only file type I recognized that contained information about periodicity. Armed with the output of your <code class="highlighter-rouge">awk</code> command, add it between the two double quotes in the first argument below:</p>
+<p>Finally, we get to the meat of the script where we pass the structure and define how we would like it plotted. The first and second lines of the function link to the container and set the background color to white, respectively. The third line reads these settings and creates a viewer, our molecular canvas, per say. Now’s the time where we add the structure. The <code class="language-plaintext highlighter-rouge">addModel</code> method has two arguments: (1) a string containing the contents of the crystal structure file and (2) a string identifying what type of file it is. The reason I chose to use pdb files is because pbd was the only file type I recognized that contained information about periodicity. Armed with the output of your <code class="language-plaintext highlighter-rouge">awk</code> command, add it between the two double quotes in the first argument below:</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">viewer</span><span class="p">.</span><span class="nx">addModel</span><span class="p">(</span><span class="dl">""</span><span class="p">,</span> <span class="dl">"</span><span class="s2">pdb</span><span class="dl">"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>As a final touch, the <code class="highlighter-rouge">setStyle</code> command, unsurprisingly, sets the atom/bond style; here, I have chosen to represent atoms by spheres with radii equal to their vdW radii (for more choices, follow this <a href="http://3dmol.csb.pitt.edu/doc/types.html#AtomStyleSpec">link</a>). The last line of the code renders the image. I have copied the code below this text and it should produce the same image on my homepage.</p>
+<p>As a final touch, the <code class="language-plaintext highlighter-rouge">setStyle</code> command, unsurprisingly, sets the atom/bond style; here, I have chosen to represent atoms by spheres with radii equal to their vdW radii (for more choices, follow this <a href="http://3dmol.csb.pitt.edu/doc/types.html#AtomStyleSpec">link</a>). The last line of the code renders the image. I have copied the code below this text and it should produce the same image on my homepage.</p>
 
 <html>
 <head>
@@ -146,26 +144,30 @@ $(function() {
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Robert B. Wexler, PhD</h2>
-
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
         <ul class="contact-list">
-          <li class="p-name">Robert B. Wexler, PhD</li><li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li></ul>
+          <li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li>
+        </ul>
       </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/rwexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">rwexler</span></a></li><li><a href="https://www.twitter.com/robertowexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">robertowexler</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>Tips and tricks for electronic structure calculations from a  PhD in chemistry.</p>
+      <div class="footer-col">
+        <p>Tips and tricks for computational materials from a PhD in chemistry.
+</p>
       </div>
     </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/rwexler" title="rwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/robertwexler" title="robertwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/robertowexler" title="robertowexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul></div>
 
   </div>
 
 </footer>
-
   </body>
 
 </html>

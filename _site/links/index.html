@@ -4,19 +4,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Links | Robert B. Wexler, PhD</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Links" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Tips and tricks for electronic structure calculations from a PhD in chemistry." />
-<meta property="og:description" content="Tips and tricks for electronic structure calculations from a PhD in chemistry." />
-<link rel="canonical" href="/links/" />
-<meta property="og:url" content="/links/" />
+<meta name="description" content="Tips and tricks for computational materials from a PhD in chemistry." />
+<meta property="og:description" content="Tips and tricks for computational materials from a PhD in chemistry." />
+<link rel="canonical" href="http://localhost:3000/links/" />
+<meta property="og:url" content="http://localhost:3000/links/" />
 <meta property="og:site_name" content="Robert B. Wexler, PhD" />
 <script type="application/ld+json">
-{"headline":"Links","description":"Tips and tricks for electronic structure calculations from a PhD in chemistry.","@type":"WebPage","url":"/links/","@context":"https://schema.org"}</script>
+{"headline":"Links","description":"Tips and tricks for computational materials from a PhD in chemistry.","@type":"WebPage","url":"http://localhost:3000/links/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Robert B. Wexler, PhD" /></head>
-<body><header class="site-header" role="banner">
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:3000/feed.xml" title="Robert B. Wexler, PhD" /></head><body><header class="site-header">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Robert B. Wexler, PhD</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -30,8 +29,7 @@
 
         <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/datasets/">Datasets</a><a class="page-link" href="/defense/">D-🤺</a><a class="page-link" href="/links/">Links</a><a class="page-link" href="/papers/">Papers</a></div>
       </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
+</header><main class="page-content" aria-label="Content">
       <div class="wrapper">
         <article class="post">
 
@@ -64,15 +62,15 @@
 <p>Codes I’ve written to automate some processes. Please let me know if you encounter any difficulties.</p>
 
 <ul>
-  <li><a href="https://github.com/rwexler/tools/blob/master/structure/vasp2xsf.py">VASP to xsf structure file converter</a> - just type <code class="highlighter-rouge">python vasp2xsf.py &lt;filename&gt;.POSCAR.vasp</code></li>
-  <li><a href="https://github.com/rwexler/tools/blob/master/structure/cfg2xsf.py">cfg to xsf structure file converter</a> - just type <code class="highlighter-rouge">python cfg2xsf.py &lt;filename&gt;.cfg</code></li>
-  <li><a href="https://github.com/rwexler/tools/blob/master/qe/re-vc-relax.py">Restart QE vc-relax</a> - first change <code class="highlighter-rouge">&lt;filename&gt;.in</code> to <code class="highlighter-rouge">&lt;filename&gt;.in.old</code>, then run <code class="highlighter-rouge">python re-vc-relax.py &lt;filename&gt;.out</code> (note: PBS script should be called <code class="highlighter-rouge">runscript</code>)</li>
-  <li><a href="https://github.com/rwexler/tools/blob/master/qe/k-pt-conv.py">k-convergence in QE</a> - modify <code class="highlighter-rouge">values</code> and then type <code class="highlighter-rouge">python k-pt-conv.py &lt;filename&gt;.in</code></li>
-  <li><a href="https://github.com/rwexler/tools/blob/master/qe/pw-conv.py">plane wave convergence in QE</a> - modify <code class="highlighter-rouge">values</code> and then type <code class="highlighter-rouge">python pw-conv.py &lt;filename&gt;.in</code></li>
-  <li><a href="https://github.com/rwexler/tools/blob/master/qe/lowdin-csv.py">csv of Lowdin charges</a> - wrangles Lowdin charges in a csv file, just type <code class="highlighter-rouge">python lowdin-csv.py &lt;filename&gt;.out</code> with <code class="highlighter-rouge">projwfc.x</code> output</li>
-  <li><a href="https://github.com/rwexler/tools/blob/master/phonons/harmonic.py">Phonon free energy</a> - calculates the phonon free energy for a range of temperatures using QE <code class="highlighter-rouge">ph.x</code> output, just type <code class="highlighter-rouge">python harmonic.py dynmat.out</code></li>
-  <li><a href="https://github.com/rwexler/tools/blob/master/qe/qe2xsf.py">QE to xsf converter</a> - just type <code class="highlighter-rouge">python qe2xsf.py &lt;filename prefix&gt;</code> where the prefix is everything that comes before the <code class="highlighter-rouge">.</code></li>
-  <li><a href="https://github.com/rwexler/tools/blob/master/qe/re-relax.py">Restart QE relax</a> - run <code class="highlighter-rouge">python re-relax.py &lt;filename prefix&gt;</code> (currently doesn’t support fixed atoms)</li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/structure/vasp2xsf.py">VASP to xsf structure file converter</a> - just type <code class="language-plaintext highlighter-rouge">python vasp2xsf.py &lt;filename&gt;.POSCAR.vasp</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/structure/cfg2xsf.py">cfg to xsf structure file converter</a> - just type <code class="language-plaintext highlighter-rouge">python cfg2xsf.py &lt;filename&gt;.cfg</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/re-vc-relax.py">Restart QE vc-relax</a> - first change <code class="language-plaintext highlighter-rouge">&lt;filename&gt;.in</code> to <code class="language-plaintext highlighter-rouge">&lt;filename&gt;.in.old</code>, then run <code class="language-plaintext highlighter-rouge">python re-vc-relax.py &lt;filename&gt;.out</code> (note: PBS script should be called <code class="language-plaintext highlighter-rouge">runscript</code>)</li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/k-pt-conv.py">k-convergence in QE</a> - modify <code class="language-plaintext highlighter-rouge">values</code> and then type <code class="language-plaintext highlighter-rouge">python k-pt-conv.py &lt;filename&gt;.in</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/pw-conv.py">plane wave convergence in QE</a> - modify <code class="language-plaintext highlighter-rouge">values</code> and then type <code class="language-plaintext highlighter-rouge">python pw-conv.py &lt;filename&gt;.in</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/lowdin-csv.py">csv of Lowdin charges</a> - wrangles Lowdin charges in a csv file, just type <code class="language-plaintext highlighter-rouge">python lowdin-csv.py &lt;filename&gt;.out</code> with <code class="language-plaintext highlighter-rouge">projwfc.x</code> output</li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/phonons/harmonic.py">Phonon free energy</a> - calculates the phonon free energy for a range of temperatures using QE <code class="language-plaintext highlighter-rouge">ph.x</code> output, just type <code class="language-plaintext highlighter-rouge">python harmonic.py dynmat.out</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/qe2xsf.py">QE to xsf converter</a> - just type <code class="language-plaintext highlighter-rouge">python qe2xsf.py &lt;filename prefix&gt;</code> where the prefix is everything that comes before the <code class="language-plaintext highlighter-rouge">.</code></li>
+  <li><a href="https://github.com/rwexler/tools/blob/master/qe/re-relax.py">Restart QE relax</a> - run <code class="language-plaintext highlighter-rouge">python re-relax.py &lt;filename prefix&gt;</code> (currently doesn’t support fixed atoms)</li>
 </ul>
 
 <p>Here are some tools I use on a regular basis.</p>
@@ -112,26 +110,30 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Robert B. Wexler, PhD</h2>
-
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
         <ul class="contact-list">
-          <li class="p-name">Robert B. Wexler, PhD</li><li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li></ul>
+          <li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li>
+        </ul>
       </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/rwexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">rwexler</span></a></li><li><a href="https://www.twitter.com/robertowexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">robertowexler</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>Tips and tricks for electronic structure calculations from a  PhD in chemistry.</p>
+      <div class="footer-col">
+        <p>Tips and tricks for computational materials from a PhD in chemistry.
+</p>
       </div>
     </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/rwexler" title="rwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/robertwexler" title="robertwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/robertowexler" title="robertowexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul></div>
 
   </div>
 
 </footer>
-
   </body>
 
 </html>

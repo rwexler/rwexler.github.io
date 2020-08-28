@@ -1,0 +1,6 @@
+I"ñ<p>Sometimes <img src="https://icsd.products.fiz-karlsruhe.de/" alt="ICSD" /> structures contain duplicate atomsâ€¦I learned 
+the hard way. I was recently running some <img src="https://www.vasp.at/" alt="VASP" /> calculations and was getting errors 
+like <code class="language-plaintext highlighter-rouge">WARNING: CNORMN: search vector ill defined</code>. Additionally, I was finding that changing <code class="language-plaintext highlighter-rouge">ALGO</code> to <code class="language-plaintext highlighter-rouge">All</code> 
+was producing the same error, leading to my conclusion that I likely had a problematic structure. Using 
+<img src="https://pymatgen.org/" alt="pymatgen" />, you can quickly check if a structure contains duplicate atoms.</p>
+:ET

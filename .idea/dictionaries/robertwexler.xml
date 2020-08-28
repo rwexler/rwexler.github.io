@@ -15,6 +15,7 @@
       <w>gautam</w>
       <w>greenblatt</w>
       <w>hwang</w>
+      <w>icsd</w>
       <w>initio</w>
       <w>interatomic</w>
       <w>izett</w>
@@ -35,6 +36,8 @@
       <w>parkin</w>
       <w>phosphide</w>
       <w>phosphides</w>
+      <w>poscar</w>
+      <w>pymatgen</w>
       <w>rappe</w>
       <w>reconstr</w>
       <w>rits</w>
@@ -43,6 +46,7 @@
       <w>sohlberg</w>
       <w>streller</w>
       <w>theor</w>
+      <w>vasp</w>
       <w>wexler</w>
       <w>zhou</w>
     </words>

@@ -4,21 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Finding descriptors for catalysis using random forests | Robert B. Wexler, PhD</title>
-<meta name="generator" content="Jekyll v3.8.7" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Finding descriptors for catalysis using random forests" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from my recent paper on tuning the hydrogen evolving activity of Ni2P via strain. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni3 sites, can induce compressive and tensile strain on the Ni3 sites leading to changes in their H binding strength." />
 <meta property="og:description" content="In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from my recent paper on tuning the hydrogen evolving activity of Ni2P via strain. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni3 sites, can induce compressive and tensile strain on the Ni3 sites leading to changes in their H binding strength." />
-<link rel="canonical" href="/descriptor/catalysis/random/forest/2019/04/16/random-forests.html" />
-<meta property="og:url" content="/descriptor/catalysis/random/forest/2019/04/16/random-forests.html" />
+<link rel="canonical" href="http://localhost:3000/descriptor/catalysis/random/forest/2019/04/16/random-forests.html" />
+<meta property="og:url" content="http://localhost:3000/descriptor/catalysis/random/forest/2019/04/16/random-forests.html" />
 <meta property="og:site_name" content="Robert B. Wexler, PhD" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-04-16T00:00:00-04:00" />
 <script type="application/ld+json">
-{"headline":"Finding descriptors for catalysis using random forests","dateModified":"2019-04-16T00:00:00-04:00","datePublished":"2019-04-16T00:00:00-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"/descriptor/catalysis/random/forest/2019/04/16/random-forests.html"},"description":"In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from my recent paper on tuning the hydrogen evolving activity of Ni2P via strain. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni3 sites, can induce compressive and tensile strain on the Ni3 sites leading to changes in their H binding strength.","@type":"BlogPosting","url":"/descriptor/catalysis/random/forest/2019/04/16/random-forests.html","@context":"https://schema.org"}</script>
+{"headline":"Finding descriptors for catalysis using random forests","dateModified":"2019-04-16T00:00:00-04:00","datePublished":"2019-04-16T00:00:00-04:00","description":"In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from my recent paper on tuning the hydrogen evolving activity of Ni2P via strain. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni3 sites, can induce compressive and tensile strain on the Ni3 sites leading to changes in their H binding strength.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:3000/descriptor/catalysis/random/forest/2019/04/16/random-forests.html"},"@type":"BlogPosting","url":"http://localhost:3000/descriptor/catalysis/random/forest/2019/04/16/random-forests.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Robert B. Wexler, PhD" /></head>
-<body><header class="site-header" role="banner">
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:3000/feed.xml" title="Robert B. Wexler, PhD" /></head><body><header class="site-header">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Robert B. Wexler, PhD</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -32,8 +31,7 @@
 
         <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/datasets/">Datasets</a><a class="page-link" href="/defense/">D-🤺</a><a class="page-link" href="/links/">Links</a><a class="page-link" href="/papers/">Papers</a></div>
       </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
+</header><main class="page-content" aria-label="Content">
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -68,7 +66,7 @@
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">numpy</code> and <code class="highlighter-rouge">pandas</code> are used for convenient data storage, <code class="highlighter-rouge">matplotlib</code> is used to generate plots, and the scikit learn is used for all things machine learning. For example, we use <code class="highlighter-rouge">train_test_split</code> to do as its name suggests, <code class="highlighter-rouge">RandomForestRegressor</code> trains a random forest, and <code class="highlighter-rouge">r2_score</code>, <code class="highlighter-rouge">mean_squared_error</code>, and <code class="highlighter-rouge">mean_absolute_error</code> are different evaluation metrics (you may like one of them more than the others, though MSE is probably the most robust).</p>
+<p><code class="language-plaintext highlighter-rouge">numpy</code> and <code class="language-plaintext highlighter-rouge">pandas</code> are used for convenient data storage, <code class="language-plaintext highlighter-rouge">matplotlib</code> is used to generate plots, and the scikit learn is used for all things machine learning. For example, we use <code class="language-plaintext highlighter-rouge">train_test_split</code> to do as its name suggests, <code class="language-plaintext highlighter-rouge">RandomForestRegressor</code> trains a random forest, and <code class="language-plaintext highlighter-rouge">r2_score</code>, <code class="language-plaintext highlighter-rouge">mean_squared_error</code>, and <code class="language-plaintext highlighter-rouge">mean_absolute_error</code> are different evaluation metrics (you may like one of them more than the others, though MSE is probably the most robust).</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># helper functions
 </span><span class="k">def</span> <span class="nf">drop_nzv</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">min_var</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span> <span class="p">:</span>
@@ -108,7 +106,7 @@
     <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p>This chunk contains some functions that you may find useful. <code class="highlighter-rouge">drop_nzv</code> takes a dataframe and removes columns whose variance is small, i.e. they are nearly single valued and therefore cannot be used to describe variations in <script type="math/tex">y</script>. <code class="highlighter-rouge">get_results</code> takes a model and calculates the three performance metrics mentioned above. <code class="highlighter-rouge">plot_results</code> plots the actual <script type="math/tex">y</script> vs. the prediction for both the training and test set.</p>
+<p>This chunk contains some functions that you may find useful. <code class="language-plaintext highlighter-rouge">drop_nzv</code> takes a dataframe and removes columns whose variance is small, i.e. they are nearly single valued and therefore cannot be used to describe variations in \(y\). <code class="language-plaintext highlighter-rouge">get_results</code> takes a model and calculates the three performance metrics mentioned above. <code class="language-plaintext highlighter-rouge">plot_results</code> plots the actual \(y\) vs. the prediction for both the training and test set.</p>
 
 <p>At this point, we’re ready to start writing some real code. You can download the data from my paper at <a href="http://pubs.acs.org/doi/suppl/10.1021/jacs.8b00947/suppl_file/ja8b00947_si_002.zip">HERE</a>.</p>
 
@@ -118,7 +116,7 @@
 <span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(55, 31)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(55, 31)
 </code></pre></div></div>
 
 <div>
@@ -288,7 +286,7 @@
 <p>5 rows × 31 columns</p>
 </div>
 
-<p>As you can see, there are 55 rows and 31 columns. Information about each of the columns can be found in <code class="highlighter-rouge">processed_data.txt</code>, which comes along with the data. Suffice to say, there are some structure (bond length, angle, etc.) and charge (Lowdin charges) descriptors for each surface and it’s corresponding H binding energy at the Ni<sub>3</sub> site (<script type="math/tex">\Delta G_{\rm H}</script>) calculated using DFT with the GGA of PBE for the electron exchange and correlation and using DFT-D2 vdW corrections. If this terminology seems foreign to you, I recommend reading chapter 2.1 of my thesis. The first column is useless and can be removed as follows:</p>
+<p>As you can see, there are 55 rows and 31 columns. Information about each of the columns can be found in <code class="language-plaintext highlighter-rouge">processed_data.txt</code>, which comes along with the data. Suffice to say, there are some structure (bond length, angle, etc.) and charge (Lowdin charges) descriptors for each surface and it’s corresponding H binding energy at the Ni<sub>3</sub> site (\(\Delta G_{\rm H}\)) calculated using DFT with the GGA of PBE for the electron exchange and correlation and using DFT-D2 vdW corrections. If this terminology seems foreign to you, I recommend reading chapter 2.1 of my thesis. The first column is useless and can be removed as follows:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># drop first column
 </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">drop</span><span class="p">([</span><span class="s">"Unnamed: 0"</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
@@ -462,7 +460,7 @@
 <p>5 rows × 30 columns</p>
 </div>
 
-<p>Viola! Now, let’s use our <code class="highlighter-rouge">drop_nzv</code> function to remove descriptors that have no predictive capability.</p>
+<p>Viola! Now, let’s use our <code class="language-plaintext highlighter-rouge">drop_nzv</code> function to remove descriptors that have no predictive capability.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># drop near zero variance descriptors
 </span><span class="n">df</span> <span class="o">=</span> <span class="n">drop_nzv</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -636,7 +634,7 @@
 <p>5 rows × 24 columns</p>
 </div>
 
-<p>As a final preprocessing step, we’ll want to remove descriptors that are highly correlated. The reason we may want to do this is because linearly dependent descriptors are redundant, i.e. only one is necessary to explain their affect on <script type="math/tex">y</script>, and models with fewer descriptors are often preferred, especially in the physical sciences! As such, I’ll remove descriptors that have correlation coefficients greater than 0.95. This chunk was adapted from <a href="https://chrisalbon.com/machine_learning/feature_selection/drop_highly_correlated_features/">an awesome blog post by Chris Albon</a>.</p>
+<p>As a final preprocessing step, we’ll want to remove descriptors that are highly correlated. The reason we may want to do this is because linearly dependent descriptors are redundant, i.e. only one is necessary to explain their affect on \(y\), and models with fewer descriptors are often preferred, especially in the physical sciences! As such, I’ll remove descriptors that have correlation coefficients greater than 0.95. This chunk was adapted from <a href="https://chrisalbon.com/machine_learning/feature_selection/drop_highly_correlated_features/">an awesome blog post by Chris Albon</a>.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># drop highly correlated descriptors
 </span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">corr</span><span class="p">().</span><span class="nb">abs</span><span class="p">()</span>
@@ -647,7 +645,7 @@
 <span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(55, 18)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(55, 18)
 </code></pre></div></div>
 
 <div>
@@ -798,9 +796,9 @@
 </table>
 </div>
 
-<p>After having cleaned up our data set, we’re now left with only 17 descriptors and 1 column for <script type="math/tex">y</script> at the far right.</p>
+<p>After having cleaned up our data set, we’re now left with only 17 descriptors and 1 column for \(y\) at the far right.</p>
 
-<p>A critical step in the construction of machine learning models is splitting the data into a training and test set. The training set is used to build the model whereas the test set is kept aside, not analyzed, and used only for evaluating the “out of sample” error. The splitting should be done randomly, however, there are some more advanced schemes, e.g. those that split the data so that the distribution of <script type="math/tex">y</script> values in each subset is more or less the same. Here, we’ll just randomly split the data. Often a good starting point is to use 2/3 of the data for training and 1/3 for testing, however, this is not a hard and fast rule and probably leans towards “too conservative”.</p>
+<p>A critical step in the construction of machine learning models is splitting the data into a training and test set. The training set is used to build the model whereas the test set is kept aside, not analyzed, and used only for evaluating the “out of sample” error. The splitting should be done randomly, however, there are some more advanced schemes, e.g. those that split the data so that the distribution of \(y\) values in each subset is more or less the same. Here, we’ll just randomly split the data. Often a good starting point is to use 2/3 of the data for training and 1/3 for testing, however, this is not a hard and fast rule and probably leans towards “too conservative”.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># split training and testing set
 </span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -809,8 +807,8 @@
 </code></pre></div></div>
 
 <h1 id="tune-random-forest">Tune random forest</h1>
-<h2 id="n_estimators"><code class="highlighter-rouge">n_estimators</code></h2>
-<p>Random forests have a few parameters that we’ll need to tune in order to minimize the test set error. The first is the number of trees in the random forests, a.k.a. <code class="highlighter-rouge">n_estimators</code>, which we’ll vary from 1 to 40.</p>
+<h2 id="n_estimators"><code class="language-plaintext highlighter-rouge">n_estimators</code></h2>
+<p>Random forests have a few parameters that we’ll need to tune in order to minimize the test set error. The first is the number of trees in the random forests, a.k.a. <code class="language-plaintext highlighter-rouge">n_estimators</code>, which we’ll vary from 1 to 40.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># tune n_estimators
 </span><span class="n">n_estimators_list</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -830,11 +828,11 @@
 
 <p><img src="/images/rfImages/output_15_0.png" style="width:500px;" /></p>
 
-<p>The blue and red lines are the training and test set error, respectively. Tuning <code class="highlighter-rouge">n_estimators</code> ultimately boils down to choosing the value that minimizes test set error, or in the case of the plot above, maximizes <script type="math/tex">R^{2}</script>. Therefore, our tuning indicates that <strong>a small random forest with 4 trees is best</strong>.</p>
+<p>The blue and red lines are the training and test set error, respectively. Tuning <code class="language-plaintext highlighter-rouge">n_estimators</code> ultimately boils down to choosing the value that minimizes test set error, or in the case of the plot above, maximizes \(R^{2}\). Therefore, our tuning indicates that <strong>a small random forest with 4 trees is best</strong>.</p>
 
-<h2 id="max_features"><code class="highlighter-rouge">max_features</code></h2>
+<h2 id="max_features"><code class="language-plaintext highlighter-rouge">max_features</code></h2>
 
-<p>Next, we’ll tune the number of features available to each tree during it’s training, a.k.a. <code class="highlighter-rouge">max_features</code>, from 1 (an overly simple and rather silly model unless that one descriptor rocks) to the total number of descriptors that survived our preprocessing above (17).</p>
+<p>Next, we’ll tune the number of features available to each tree during it’s training, a.k.a. <code class="language-plaintext highlighter-rouge">max_features</code>, from 1 (an overly simple and rather silly model unless that one descriptor rocks) to the total number of descriptors that survived our preprocessing above (17).</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># max_features
 </span><span class="n">max_features_list</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -856,9 +854,9 @@
 
 <p>Here you can see that <strong>the best model includes all of the descriptors</strong>.</p>
 
-<h2 id="max_depth"><code class="highlighter-rouge">max_depth</code></h2>
+<h2 id="max_depth"><code class="language-plaintext highlighter-rouge">max_depth</code></h2>
 
-<p>Finally, we may want to tune the maximum depth of the trees, a.k.a. <code class="highlighter-rouge">max_depth</code>, from 1 to some arbitrarily large number, e.g. 31.</p>
+<p>Finally, we may want to tune the maximum depth of the trees, a.k.a. <code class="language-plaintext highlighter-rouge">max_depth</code>, from 1 to some arbitrarily large number, e.g. 31.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># max_depth
 </span><span class="n">max_depths</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -904,7 +902,7 @@
 </span><span class="n">plot_importances</span><span class="p">(</span><span class="n">regr</span><span class="p">,</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>results
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>results
 -------
 r2   = 0.8510929000114282
 rmse = 0.07531117819235955
@@ -915,11 +913,11 @@ mae  = 0.0525640930241579
 
 <p><img src="/images/rfImages/output_21_2.png" style="width:500px;" /></p>
 
-<p>All righty, then! Let’s take this piece by piece. First, your <script type="math/tex">R^{2}</script> is 0.85, which is pretty darn good considering we only fed the model simple structure and charge descriptors. The RMSE and MAE are between 0.05 and 0.1 eV, which is excellent considering the intrinsic DFT accuracy for binding energies is around 0.1 eV. The first plot shows how well our random forest model did compared to DFT. The black line shows perfect performance. The blue and red dots correspond to the training and test data, respectively. Upon visual inspection and in conjuction with the metrics above, we have achieved a good fit.</p>
+<p>All righty, then! Let’s take this piece by piece. First, your \(R^{2}\) is 0.85, which is pretty darn good considering we only fed the model simple structure and charge descriptors. The RMSE and MAE are between 0.05 and 0.1 eV, which is excellent considering the intrinsic DFT accuracy for binding energies is around 0.1 eV. The first plot shows how well our random forest model did compared to DFT. The black line shows perfect performance. The blue and red dots correspond to the training and test data, respectively. Upon visual inspection and in conjuction with the metrics above, we have achieved a good fit.</p>
 
 <p>Finally, because random forests are intrinsically nonlinear models, they aren’t as interpretable as, say, multiple linear regression models. However, we can look under the hood of the random forest model to see which descriptors were the most effective in making these predictions. Simply put, the most important features are those that reduce the training set error the most. There are various ways of calculating this reduction but their description is beyond the scope of this introduction.</p>
 
-<p>So what does the bottom plot tell us? It tells us that the most important descriptor, i.e. the one with the largest bar, is for <code class="highlighter-rouge">X95_98</code>, which is the bond distance between two Ni’s at the Ni<sub>3</sub> site. This means that Ni-Ni bond distance is the most important descriptor of H binding strength. Since we kept the active site the same (Ni<sub>3</sub>) and applied chemical perturbations around it (replacing P with other nonmetals), our random forest model suggests that dopants simply apply strain on the Ni<sub>3</sub> site, modulating its H binding strength via compression and expansion.</p>
+<p>So what does the bottom plot tell us? It tells us that the most important descriptor, i.e. the one with the largest bar, is for <code class="language-plaintext highlighter-rouge">X95_98</code>, which is the bond distance between two Ni’s at the Ni<sub>3</sub> site. This means that Ni-Ni bond distance is the most important descriptor of H binding strength. Since we kept the active site the same (Ni<sub>3</sub>) and applied chemical perturbations around it (replacing P with other nonmetals), our random forest model suggests that dopants simply apply strain on the Ni<sub>3</sub> site, modulating its H binding strength via compression and expansion.</p>
 
 <h1 id="the-end">The end</h1>
 <p>I hope you enjoyed this introduction. Please feel free to get in touch if you have any questions/comments about this and/or suggestions for future content! And, as always, thanks for using this resource!</p>
@@ -935,26 +933,30 @@ mae  = 0.0525640930241579
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Robert B. Wexler, PhD</h2>
-
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
         <ul class="contact-list">
-          <li class="p-name">Robert B. Wexler, PhD</li><li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li></ul>
+          <li><a class="u-email" href="mailto:rbwexler@princeton.edu">rbwexler@princeton.edu</a></li>
+        </ul>
       </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/rwexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">rwexler</span></a></li><li><a href="https://www.twitter.com/robertowexler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">robertowexler</span></a></li></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
-        <p>Tips and tricks for electronic structure calculations from a  PhD in chemistry.</p>
+      <div class="footer-col">
+        <p>Tips and tricks for computational materials from a PhD in chemistry.
+</p>
       </div>
     </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/rwexler" title="rwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/robertwexler" title="robertwexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg></a></li><li><a rel="me" href="https://twitter.com/robertowexler" title="robertowexler"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul></div>
 
   </div>
 
 </footer>
-
   </body>
 
 </html>

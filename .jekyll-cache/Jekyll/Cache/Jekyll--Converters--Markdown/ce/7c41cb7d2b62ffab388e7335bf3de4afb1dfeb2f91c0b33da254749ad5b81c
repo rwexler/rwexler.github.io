@@ -1,0 +1,2 @@
+I"<p>Today, I was able to successfully compile LAMMPS on the DoD machine Koehr. First, I used <code class="language-plaintext highlighter-rouge">mpicc</code> as my C++ compiler. Then, I manually pointed the makefile to Intel’s MPI libraries using the following three lines of code:</p>
+:ET

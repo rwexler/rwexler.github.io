@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="updated to minima3 and added post on removing duplicate atoms" />
+    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="updated to minima3 and added post on removing duplicate atoms">
+      <change afterPath="$PROJECT_DIR$/images/nature-cover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/robertwexler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/robertwexler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/papers.md" beforeDir="false" afterPath="$PROJECT_DIR$/papers.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +69,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/images" />
       <recent name="$PROJECT_DIR$/assets/css" />
     </key>
   </component>
@@ -80,6 +86,8 @@
       <updated>1597438356625</updated>
       <workItem from="1598621350489" duration="5462000" />
       <workItem from="1598629430146" duration="1932000" />
+      <workItem from="1607099730098" duration="316000" />
+      <workItem from="1611947925164" duration="200000" />
     </task>
     <task id="LOCAL-00001" summary="Updated papers.md">
       <created>1597447505462</created>
@@ -123,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598631279719</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="i dunno">
+      <created>1607099746083</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1607099746083</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +163,8 @@
     <MESSAGE value="changed font to times?" />
     <MESSAGE value="changed font to futura?" />
     <MESSAGE value="updated to minima3 and added post on removing duplicate atoms" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated to minima3 and added post on removing duplicate atoms" />
+    <MESSAGE value="i dunno" />
+    <option name="LAST_COMMIT_MESSAGE" value="i dunno" />
   </component>
   <component name="WindowStateProjectService">
     <state x="221" y="89" key="SettingsEditor" timestamp="1597440147929">

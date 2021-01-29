@@ -12,6 +12,17 @@ My [Google Scholar](https://scholar.google.com/citations?user=BMnroAsAAAAJ&hl=en
 
 ---
 
+<img src="/images/nature-cover.png" alt="nature" style="width:500px">
+
+Kim, Y.-H.; Kim, S.; Kakekhani, A.; Park, J.; Park, J.-H.; Lee, D.; Heo, S.; 
+Xu, H.; **Wexler, R. B.**; Jo, S.-H.; Lee, Y.-H.; Sadhanala, A.; Tan, P.; 
+Mart&iacute;nez-Sarti, L.; Park, G.-S.; Kim, Y.-W.; Bin-Hu; Bolink, H. J.; 
+Yoo, S.; Friend, R. H.; Rappe, A. M.; Lee, T.-W. 
+Comprehensive defect suppression in perovskite nanocrystals for 
+high-efficiency light-emitting diodes. *Nat. Photonics*, **2021**, *15*, 
+148-155. 
+DOI: [10.1038/s41566-020-00732-4](https://doi.org/10.1038/s41566-020-00732-4)
+
 **Wexler, R. B.**; Gautam, S. G.; Carter, E. A. 
 Exchange-correlation functional challenges in modeling quaternary chalcogenides. 
 *Phys. Rev. B*, **2020**, *102*, 054101 (1-11). 

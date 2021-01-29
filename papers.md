@@ -12,7 +12,7 @@ My [Google Scholar](https://scholar.google.com/citations?user=BMnroAsAAAAJ&hl=en
 
 ---
 
-<img src="/images/nature-cover.png" alt="nature" style="width:500px">
+<img src="/images/nature-cover.png" alt="nature" style="width:250px">
 
 Kim, Y.-H.; Kim, S.; Kakekhani, A.; Park, J.; Park, J.-H.; Lee, D.; Heo, S.; 
 Xu, H.; **Wexler, R. B.**; Jo, S.-H.; Lee, Y.-H.; Sadhanala, A.; Tan, P.; 

@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="updated to minima3 and added post on removing duplicate atoms">
-      <change afterPath="$PROJECT_DIR$/images/nature-cover.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/robertwexler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/robertwexler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/papers.md" beforeDir="false" afterPath="$PROJECT_DIR$/papers.md" afterDir="false" />
-    </list>
+    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="Added the nature photonics paper" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +82,7 @@
       <workItem from="1598621350489" duration="5462000" />
       <workItem from="1598629430146" duration="1932000" />
       <workItem from="1607099730098" duration="316000" />
-      <workItem from="1611947925164" duration="200000" />
+      <workItem from="1611947925164" duration="531000" />
     </task>
     <task id="LOCAL-00001" summary="Updated papers.md">
       <created>1597447505462</created>
@@ -138,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607099746083</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added the nature photonics paper">
+      <created>1611948443940</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1611948443940</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,25 +166,13 @@
     <MESSAGE value="changed font to futura?" />
     <MESSAGE value="updated to minima3 and added post on removing duplicate atoms" />
     <MESSAGE value="i dunno" />
-    <option name="LAST_COMMIT_MESSAGE" value="i dunno" />
+    <MESSAGE value="Added the nature photonics paper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the nature photonics paper" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="221" y="89" key="SettingsEditor" timestamp="1597440147929">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1597440147929" />
-    <state x="-3413" y="228" key="Vcs.Push.Dialog.v2" timestamp="1598631284933">
+    <state x="-3280" y="280" key="Vcs.Push.Dialog.v2" timestamp="1611948448987">
       <screen x="-3840" y="0" width="1920" height="1080" />
     </state>
-    <state x="-3413" y="228" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1440.900/-3840.0.1920.1080@-3840.0.1920.1080" timestamp="1598631284933" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1597447533623" />
-    <state x="508" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597447475315">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="508" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1597447475315" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1597445210906">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1597445210906" />
+    <state x="-3280" y="280" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1440.900/-3840.0.1920.1080@-3840.0.1920.1080" timestamp="1611948448987" />
   </component>
 </project>

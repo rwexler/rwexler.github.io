@@ -19,7 +19,44 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="Added the nature photonics paper" />
+    <list default="true" id="343d07ba-a3ca-4075-84c7-3b9b57069d73" name="Default Changelist" comment="Added the nature photonics paper and rebuilt page">
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/20/ebf08491bdad00e731bae4397eb749b50f60b652b47a45771ad97b37549d6b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/9a/58b524fb708fda48195d3877a3f12f9d6432891d131997f8f5e9a038420334" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_site/images/quartz.cif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/quartz.cif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/toc-graphic-rbw1-sgg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/periodic-tables/cept.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/periodic-tables/periodic.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/periodic-tables/pt.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/periodic-tables/pt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/robertwexler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/robertwexler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rwexler.github.io.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rwexler.github.io.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Cache/b7/9606fb3afea5bd1609ed40b622142f1c98125abcfe89a76a661b0e8e343910" beforeDir="false" afterPath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Cache/b7/9606fb3afea5bd1609ed40b622142f1c98125abcfe89a76a661b0e8e343910" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/54/7756d7dcdd5f86d9473782200836232fa8e4a49a029dec9b83c80129f468bb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/ba/f58b578b37e3bb7a8d3955989427221a096e37a148f18c4ea58b4392ada9f2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/d5/9639f9ace5b5785d311c9d7c5423a424dde121b03303a6324c7eece8a3b3dc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/about/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/about/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/atomic/simulation/environment/2019/08/31/ase-examples.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/atomic/simulation/environment/2019/08/31/ase-examples.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/compiling/lammps/2019/01/28/compiling-lammps-on-koehr.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/compiling/lammps/2019/01/28/compiling-lammps-on-koehr.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/datasets/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/datasets/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/defense/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/defense/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/descriptor/catalysis/random/forest/2019/04/16/random-forests.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/descriptor/catalysis/random/forest/2019/04/16/random-forests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/feed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_site/feed.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/gzip/parallel/pigz/2019/03/24/gzip-in-parallel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/links/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/links/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/markdown/3dmol.js/2019/12/10/3dmol.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/markdown/3dmol.js/2019/12/10/3dmol.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/papers/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/papers/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/qe/2019/01/29/running-qe-on-conrad.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/qe/2019/01/29/running-qe-on-conrad.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/remove/duplicate/atoms/structures/2020/08/20/remove-duplicates.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/remove/duplicate/atoms/structures/2020/08/20/remove-duplicates.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/thermal/profile/lammps/2019/03/25/thermal-profile-lammps.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/unzip/python/linux/2019/07/15/unar-python.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/unzip/python/linux/2019/07/15/unar-python.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/visualization/dipolar/dynamics/bst/2019/03/25/dipolar-dynamics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/papers.md" beforeDir="false" afterPath="$PROJECT_DIR$/papers.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,13 +67,20 @@
       <list>
         <option value="package" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JupyterTrust" id="59ff1747-b0a7-4c49-b8fe-1560a74ff95c" />
+  <component name="JupyterTrust" id="59ff1747-b0a7-4c49-b8fe-1560a74ff95c">
+    <option name="files">
+      <option value="periodic-tables/pt.ipynb" />
+    </option>
+  </component>
   <component name="ProjectId" id="1g6cCi9EkFy442xrJYbuW241icT" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -83,6 +127,16 @@
       <workItem from="1598629430146" duration="1932000" />
       <workItem from="1607099730098" duration="316000" />
       <workItem from="1611947925164" duration="531000" />
+      <workItem from="1611948496135" duration="280000" />
+      <workItem from="1614699828038" duration="342000" />
+      <workItem from="1614897889780" duration="307000" />
+      <workItem from="1614899244225" duration="110000" />
+      <workItem from="1617801387008" duration="372000" />
+      <workItem from="1618689079384" duration="706000" />
+      <workItem from="1618692783847" duration="1854000" />
+      <workItem from="1618845931989" duration="2000" />
+      <workItem from="1618845940271" duration="5931000" />
+      <workItem from="1618929605621" duration="506000" />
     </task>
     <task id="LOCAL-00001" summary="Updated papers.md">
       <created>1597447505462</created>
@@ -140,7 +194,35 @@
       <option name="project" value="LOCAL" />
       <updated>1611948443940</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added the nature photonics paper and rebuilt page">
+      <created>1611948537455</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611948537455</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added the nature photonics paper and rebuilt page">
+      <created>1611948541366</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1611948541366</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added the nature photonics paper and rebuilt page">
+      <created>1611948588680</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1611948588680</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added the nature photonics paper and rebuilt page">
+      <created>1611948686026</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1611948686026</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,12 +249,17 @@
     <MESSAGE value="updated to minima3 and added post on removing duplicate atoms" />
     <MESSAGE value="i dunno" />
     <MESSAGE value="Added the nature photonics paper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the nature photonics paper" />
+    <MESSAGE value="Added the nature photonics paper and rebuilt page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the nature photonics paper and rebuilt page" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-3280" y="280" key="Vcs.Push.Dialog.v2" timestamp="1611948448987">
+    <state x="-3246" y="225" key="#Inspections" timestamp="1618849928067">
       <screen x="-3840" y="0" width="1920" height="1080" />
     </state>
-    <state x="-3280" y="280" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1440.900/-3840.0.1920.1080@-3840.0.1920.1080" timestamp="1611948448987" />
+    <state x="-3246" y="225" key="#Inspections/-1920.23.1920.950/0.23.1440.877/-3840.0.1920.1080@-3840.0.1920.1080" timestamp="1618849928067" />
+    <state x="-3280" y="280" key="Vcs.Push.Dialog.v2" timestamp="1611948693137">
+      <screen x="-3840" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-3280" y="280" key="Vcs.Push.Dialog.v2/-1920.0.1920.1080/0.0.1440.900/-3840.0.1920.1080@-3840.0.1920.1080" timestamp="1611948693137" />
   </component>
 </project>

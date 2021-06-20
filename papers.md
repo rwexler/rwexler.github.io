@@ -12,6 +12,13 @@ My [Google Scholar](https://scholar.google.com/citations?user=BMnroAsAAAAJ&hl=en
 
 ---
 
+<img src="/images/toc-graphic-rbw1-sgg.png" alt="jmca" style="width:250px">
+
+**Wexler, R. B.**; Gautam, S. G.; Carter, E. A. 
+Optimizing kesterite solar cells from Cu<sub>2</sub>ZnSnS<sub>4</sub> to Cu<sub>2</sub>CdGe(S,Se)<sub>4</sub>. 
+*J. Mater. Chem. A*, **2021**, *Accepted Manuscript*. 
+DOI: [10.1039/D0TA11603C](https://doi.org/10.1039/D0TA11603C)
+
 <img src="/images/nature-cover.png" alt="nature" style="width:250px">
 
 Kim, Y.-H.; Kim, S.; Kakekhani, A.; Park, J.; Park, J.-H.; Lee, D.; Heo, S.; 

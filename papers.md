@@ -12,11 +12,18 @@ My [Google Scholar](https://scholar.google.com/citations?user=BMnroAsAAAAJ&hl=en
 
 ---
 
-<img src="/images/toc-graphic-rbw1-sgg.png" alt="jmca" style="width:250px">
+<img src="/images/toc.png" alt="stch" style="width:500px;">
+
+**Wexler, R. B.**; Gautam, S. G.; Stechel, E. B.; Carter, E. A. 
+Factors Governing Oxygen Vacancy Formation in Oxide Perovskites. 
+*J. Am. Chem. Soc.* **2021**, *Accepted*. 
+DOI: [10.1021/jacs.1c05570](https://doi.org/10.1021/jacs.1c05570)
+
+<img src="/images/toc-graphic-rbw1-sgg.png" alt="jmca" style="width:500px;">
 
 **Wexler, R. B.**; Gautam, S. G.; Carter, E. A. 
 Optimizing kesterite solar cells from Cu<sub>2</sub>ZnSnS<sub>4</sub> to Cu<sub>2</sub>CdGe(S,Se)<sub>4</sub>. 
-*J. Mater. Chem. A*, **2021**, *Accepted Manuscript*. 
+*J. Mater. Chem. A*, **2021**, *9*, 9882-9897. 
 DOI: [10.1039/D0TA11603C](https://doi.org/10.1039/D0TA11603C)
 
 <img src="/images/nature-cover.png" alt="nature" style="width:250px">

@@ -1,4 +1,4 @@
-I"�<p>In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from <a href="https://pubs.acs.org/doi/10.1021/jacs.8b00947">my recent paper on tuning the hydrogen evolving activity of Ni<sub>2</sub>P via strain</a>. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni<sub>3</sub> sites, can induce compressive and tensile strain on the Ni<sub>3</sub> sites leading to changes in their H binding strength.</p>
+I"I�<p>In this tutorial, I’m going to show you how easy it is to train and analyze a random forest regression model. The data we’re going to use is taken from <a href="https://pubs.acs.org/doi/10.1021/jacs.8b00947">my recent paper on tuning the hydrogen evolving activity of Ni<sub>2</sub>P via strain</a>. [1] The main idea of the paper is that surface nonmetal dopants, which replace P near the Ni<sub>3</sub> sites, can induce compressive and tensile strain on the Ni<sub>3</sub> sites leading to changes in their H binding strength.</p>
 
 <p>In my study, I calculated the H binding energy at the Ni<sub>3</sub> site for different nonmetal dopants (B, C, N, O, Si, S, As, Se, &amp; Te) and doping concentrations. There were 55 configurations in total…so I was working with a rather small data set. I should mention that for smaller data sets it’s generally advisable to use linear models, however, if care is taken, then random forests can be used as well. Regardless, always make sure to validate your proposed descriptors using an appropriate simulation technique such as density functional theory.</p>
 
@@ -777,7 +777,7 @@
 <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_list</span><span class="p">,</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_list</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"n estimators"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r"R$^2$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s">"R$^2$"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -801,7 +801,7 @@
 <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_features_list</span><span class="p">,</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_features_list</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"max features"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r"R$^2$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s">"R$^2$"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -825,7 +825,7 @@
 <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_depths</span><span class="p">,</span> <span class="n">r2_train</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"blue"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">max_depths</span><span class="p">,</span> <span class="n">r2_test</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"red"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"max depth"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r"R$^2$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s">"R$^2$"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
